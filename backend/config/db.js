@@ -5,3 +5,4 @@ const connection = mongoose.connect("mongodb+srv://dheerajpal:dheerajpal@cluster
 module.exports = {
   connection,
 };
+
