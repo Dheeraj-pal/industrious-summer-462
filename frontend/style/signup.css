@@ -1,0 +1,162 @@
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+  
+  *{
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 10px;
+    background: #feef02;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  #image{
+      margin-top: 25px;
+      text-align: center;
+  }
+  #main{
+      margin-top: -10px;
+  }
+  #image>img{
+      width: 10%;
+  }
+  #content{
+      width: 35%;
+      margin: auto;
+      margin-top: 30px;
+  }
+  #content>h1{
+      font-size: 35px;
+      line-height: 44px;
+      font-weight: 600;
+      color: rgb(51, 51, 51);
+      margin-bottom:20px ;
+  }
+  #inpname{
+      font-size: 21px;
+      line-height: 26.25px;
+      font-weight: 500;
+      color: rgb(51, 51, 51);
+  }
+  input[type="name"]{
+      height: 40px;
+      width: 97.4%;
+      margin-top: 10px;
+      border: 2px solid rgb(211, 209, 209);
+      border-radius: 5px; 
+      font-size: 16px;
+      line-height: 25.5px;
+      padding-left: 10px;
+  }
+  #inpemail{
+      margin-top: 15px;
+      font-size: 21px;
+      line-height: 26.25px;
+      font-weight: 500;
+      color: rgb(51, 51, 51);
+  }
+  input[type="email"]{
+      height: 40px;
+      width: 97.4%;
+      margin-top: 10px;
+      border: 2px solid rgb(211, 209, 209);
+      border-radius: 5px;
+      font-size: 16px;
+      line-height: 25.5px;
+      padding-left: 10px;
+  }
+  #inppass{
+      margin-top: 15px;
+      font-size: 21px;
+      line-height: 26.25px;
+      font-weight: 500;
+      color: rgb(51, 51, 51);
+  }
+  input[type="password"]{
+      height: 40px;
+      width: 97.4%;
+      margin-top: 10px;
+      border: 2px solid rgb(211, 209, 209);
+      border-radius: 5px;
+      font-size: 16px;
+      line-height: 25.5px;
+      padding-left: 10px;
+  }
+  #up{
+      text-align: center;
+  }
+  button[type="submit"]{
+      width: 100%;
+      height: 44px;
+      margin-top: 30px;
+      background-color: #feef02;
+      color: rgb(0, 0, 0);
+      border-radius: 5px;
+      border: none;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 25.5px;
+      cursor: pointer;
+  }
+  #googlebtn{
+      margin-top: 20px;
+      height: 44px;
+      background-color: white;
+      border: 1px solid rgb(211, 209, 209);
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+  }
+  #googlebtn>img{
+      width: 5%;
+      margin-right: 15px;
+  }
+  #google>p{
+      text-align: center;
+      font-size: 13.33333px;
+      font-weight: 400;
+      color: rgb(102, 102, 102);
+      margin-top: 10px;
+      cursor: pointer;
+  }
+  #content>p{
+      font-size: 12.8px;
+      line-height: 19.2px;
+      font-weight: 400;
+      color: rgb(51, 51, 51);
+      text-align: center;
+      margin-top: 30px;
+  }
+  #banner{
+      height: 38px;
+      width: 100%;
+      background-color: #feef02;
+      margin-top: 27px;
+      color: rgb(0, 0, 0);
+      font-size: 16px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  #banner>p{
+      margin-left: 10px;
+  }
