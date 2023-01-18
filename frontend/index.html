@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="images/logo_mini.png" />
+    <title>Dollar Store | Save time. Save money. Every day.</title>
+    <link rel="stylesheet" href="style/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav
+      id="navigationBar"
+      class="navbar navbar-expand-lg navbar-dark bg-black"
+    >
+      <div id="nav-logo">
+        <a href="index.html">
+          <img id="nav-logo-img" src="images\logo.png" alt="" />
+        </a>
+      </div>
+      <div class="container-fluid">
+        <button
+          style="
+            border: 1px solid cyan;
+            position: absolute;
+            top: 15px;
+            left: 90%;
+          "
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown nav-dropdown">
+              <a
+                class="nav-link active dropdown-toggle nav-opt"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+                id="navbar-submenu"
+              >
+                <li><a class="dropdown-item" href="#">On Sale</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty</a></li>
+                <li>
+                  <a class="dropdown-item" href="Food&Beverage.html"
+                    >Food & Beverage</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Pet</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Auto & Hardware</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Baby</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" aria-current="page" href="#">
+                Coupons & Deals</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" href="#">Weekly Ads </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" href="#">Careers </a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control navbar-search me-2"
+              type="search"
+              placeholder="Search for a product"
+              aria-label="Search"
+            />
+          </form>
+          <div id="nav-signin-id">
+            <a
+              id="inoutbtn"
+              href="signup.html"
+              class="fa-solid fa-circle-user singin-nav"
+            >
+            </a>
+            <p class="signintxt">SignIn</p>
+          </div>
+        </div>
+      </div>
+      <div id="cartlogo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="white"
+          class="bi bi-bag-check-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+          />
+        </svg>
+        <p>Cart</p>
+      </div>
+    </nav>
+
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators top-carousel">
+        <button
+          id="top-slider-btn1"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          id="top-slider-btn2"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          id="top-slider-btn3"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item top-banner-carousel active">
+          <img src="./images/banner_3.jpeg" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item top-banner-carousel">
+          <img height="343px" src="./images/banner_2.jpeg" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item top-banner-carousel">
+          <img src="./images/banner_1.jpeg" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button
+        style="z-index: 0"
+        class="carousel-control-prev previous-btn-mid-crousel"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        style="z-index: 0"
+        class="carousel-control-next next-btn-mid-crousel"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="row top-card-section row-cols-1 row-cols-md-2 g-1">
+      <div class="col col-top-section">
+        <img
+          src="https://www.dollargeneral.com/content/dam/home-pickup-merge/coupons.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <h1 class="top-card-h5">
+          Digital <br />
+          Coupons
+        </h1>
+      </div>
+      <div class="col col-top-section">
+        <img
+          src="https://www.dollargeneral.com/content/dam/home-pickup-merge/weekly.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <h1 class="top-card-h5">
+          Weekly <br />
+          Ads
+        </h1>
+      </div>
+    </div>
+
+    <div class="hotfix aem-GridColumn aem-GridColumn--default--12">
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Shop by Category</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cols-3 row-cols-md-6 g-1 top-card-categouy">
+      <div class="col">
+        <a href="">
+          <img
+            style="background-color: black"
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy.coreimg.100.300.png/1672963546413/onsale.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">On Sale</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_184624128.coreimg.100.300.png/1672963565143/dollardeals.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Dollar Deals</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_535471926_1623657616.coreimg.100.300.png/1672963573547/valentines-day-icon.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Valentine’s Day</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_184147554.coreimg.100.300.png/1672963584424/body.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Personal Care</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_213107019.coreimg.100.300.png/1672963592242/cabinet.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Health</h5>
+      </div>
+
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_535471926.coreimg.100.300.png/1672963607680/treats.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Pet</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_62860135.coreimg.100.300.png/1672963616554/lego.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Toys</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_145378025_570633916.coreimg.100.300.png/1672963633677/phones.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Electronics</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_124789933.coreimg.100.300.png/1672963642648/household.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Household</h5>
+      </div>
+      <div class="col">
+        <a href="beauty.html">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_120437666.coreimg.100.300.png/1672963651104/facials.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Beauty</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_145378025.coreimg.100.300.png/1672963662044/school-supplies-icon.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">
+          Office & School Supplies
+        </h5>
+      </div>
+
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_194943053.coreimg.100.300.png/1672963670978/laundry.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Cleaning</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_940423767.coreimg.100.300.png/1672963691105/party-occasions-icon.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Party & Occasions</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_213821596.coreimg.100.300.png/1672963699111/fluids.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Auto & Hardware</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_180019887_945914675.coreimg.100.300.png/1672963707187/week31-baby.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Baby</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_180019887.coreimg.100.300.png/1672963716178/tllaundry.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">DG Brands</h5>
+      </div>
+      <div class="col">
+        <a href="">
+          <img
+            src="https://www.dollargeneral.com/_jcr_content/root/responsivegrid/responsivegrid_303914515/image_copy_148673499.coreimg.100.300.png/1672963599613/mac.png"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <h5 class="top-card-h5 top-card-categouy-txt">Food & Beverage</h5>
+      </div>
+    </div>
+
+    <div class="hotfix aem-GridColumn aem-GridColumn--default--12 hr-refresh">
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">
+                    Refresh Your Home & Beauty Storage
+                  </h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 refresh-grid-img">
+      <div class="col">
+        <div class="card">
+          <img src="./images/VD1.jpeg" class="card-img-top" alt="..." />
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/VD2.jpeg" class="card-img-top" alt="..." />
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="./images/VD3.jpeg" class="card-img-top" alt="..." />
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="owl-carousel owl-theme refresh-carousel-div"
+      id="refresh-crousel"
+    >
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/32/99/32996501_0.jpg"
+          alt=""
+        />
+        <p>Nt23 Succulent Stripe Po Home Decore</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/24/92/24920801_0.jpg"
+          alt=""
+        />
+        <p>Wooden Block Perpetual Calendar</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/30/63/30639001_0.jpg"
+          alt=""
+        />
+        <p>Glass Candle Holder, 12 Oz- Assorted</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/30/63/30637401_0.jpg"
+          alt=""
+        />
+        <p>Pzf222 Bh Horz Word Sign Home Decore</p>
+        <h5>$3.50</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/33/15/33150901_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Soap Dispender, Assorted</p>
+        <h5>$4.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/33/15/33150201_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+    </div>
+
+    <div
+      class="hotfix aem-GridColumn aem-GridColumn--default--12 popular-title"
+    >
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Popular on our site</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="owl-carousel owl-theme refresh-carousel-div"
+      id="refresh-crousel"
+    >
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/23/84/23842201_0.jpg"
+          alt=""
+        />
+        <p>Clover Vally Milk 1% Gallon One Pack</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/01/91/01918101_0.jpg"
+          alt=""
+        />
+        <p>Diet Mountain Dew 24 Pack 12 Oz Can</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/00/71/00715604_0.jpg"
+          alt=""
+        />
+        <p>Oral B Healthy Clean Tooth Brush</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/18/49/18498302_0.jpg"
+          alt=""
+        />
+        <p>Scott Comfortplus Big Roll Toilet Paper Bath...</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/01/00/01008002_0.jpg"
+          alt=""
+        />
+        <p>Trueliving Soak Proof & Sturdy 9" Foam Plates...</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/DS/11/DS111648_2.jpg"
+          alt=""
+        />
+        <p>Red Bull 4pk 12oz Red Bull Energy Drink...</p>
+      </div>
+
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/28/03/28037301_0.jpg"
+          alt=""
+        />
+        <p>Pampers Expressions Multi-Use Wipes...</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/27/56/27566001_0.jpg"
+          alt=""
+        />
+        <p>Bone Shaker Racers Hot Wheels Racers...</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/10/71/10718302_0.jpg"
+          alt=""
+        />
+        <p>
+          Clover Valley Sugar - <br />
+          32oz
+        </p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/16/25/16250532_4.jpg"
+          alt=""
+        />
+        <p>Xmas Tree Cakes Little Debbie Vanilla Tree...</p>
+      </div>
+    </div>
+
+    <div
+      class="hotfix aem-GridColumn aem-GridColumn--default--12 popular-title"
+    >
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Featured Coupons</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="owl-carousel owl-theme refresh-carousel-div"
+      id="refresh-crousel"
+    >
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://cdn.cpnscdn.com/static.coupons.com/ext/bussys/cpa/pod/11/381/3311381_738c5632-48dc-4e4f-a4c3-df9a3e465b8c.gif"
+          alt=""
+        />
+        <h5>Save $3.00</h5>
+        <p>on ONE (1) ARM & HAMMER™ Laundry Detergent 118.1-144.5oz</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://cdn.cpnscdn.com/static.coupons.com/ext/bussys/cpa/pod/42/221/3242221_9401a2ad-6dc1-49cb-98d3-2da5f7c03e75.gif"
+          alt=""
+        />
+        <h5>$1.00 OFF</h5>
+        <p>
+          any ONE (1) Dove® Shampoo or Conditioner product (excludes Dove Men +
+          Care, twin packs)
+        </p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://cdn.cpnscdn.com/static.coupons.com/ext/bussys/cpa/pod/44/161/3244161_b80e9b07-263f-439b-8d64-9f8a92489514.gif"
+          alt=""
+        />
+        <h5>Save $0.75</h5>
+        <p>
+          off ONE (1) Goldfish® crackers, 14 oz. <br />
+          Exp: 02/12/2023
+        </p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://cdn.cpnscdn.com/static.coupons.com/ext/bussys/cpa/pod/68/691/3168691_9d06156b-9027-4dd3-8614-7f74beea2c7b.gif"
+          alt=""
+        />
+        <h5>SAVE $2.00</h5>
+        <p>
+          on any PEPCID® (25ct or higher), IMODIUM® or LACTAID® Supplement
+          product.
+        </p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://cdn.cpnscdn.com/static.coupons.com/ext/bussys/cpa/pod/72/241/3272241_d3d01485-9df2-4144-bfef-f8901c8a588e.gif"
+          alt=""
+        />
+        <h5>Save $2.00</h5>
+        <p>off ONE (1) Schick® Classic™ or Skintimate® Disposable Razor Pack</p>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/DS/11/DS111648_2.jpg"
+          alt=""
+        />
+        <h5>$6.00</h5>
+        <p>
+          on any PEPCID® (25ct or higher), IMODIUM® or LACTAID® Supplement
+          product
+        </p>
+      </div>
+
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/28/03/28037301_0.jpg"
+          alt=""
+        />
+        <h5>$6.00</h5>
+        <p>
+          off ONE (1) Goldfish® crackers, 14 oz. <br />
+          Exp: 02/12/2023
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="hotfix aem-GridColumn aem-GridColumn--default--12 popular-title"
+    >
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Game Day</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mid-section-img-1">
+      <img
+        style="cursor: pointer"
+        src="./images/Game_Day-mid_banner.jpeg"
+        class="card-img"
+        alt="..."
+      />
+    </div>
+
+    <div
+      class="hotfix aem-GridColumn aem-GridColumn--default--12 popular-title"
+    >
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Deals of the Week</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner card-carousel-mid-section">
+        <div class="carousel-item active">
+          <div class="cards-wrapper cards-wrapper1">
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_1.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_2.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_3.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_4.png" class="card-img-top" alt="..." />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="cards-wrapper cards-wrapper1">
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_5.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_6.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_7.png" class="card-img-top" alt="..." />
+            </div>
+            <div class="card card-section" style="width: 15rem">
+              <img src="./images/deals_2.png" class="card-img-top" alt="..." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        style="z-index: 0"
+        class="carousel-control-prev previous-btn-mid-crousel-deal0ftheday"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        style="z-index: 0"
+        class="carousel-control-next next-btn-mid-crousel-deal0ftheday"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div
+      class="hotfix aem-GridColumn aem-GridColumn--default--12 popular-title"
+    >
+      <div class="hotfix">
+        <div class="hotfix__content">
+          <div>
+            <div
+              class="title title--section aem-GridColumn--sm--hide aem-GridColumn--offset--sm--0 aem-GridColumn aem-GridColumn--sm--12 aem-GridColumn--default--12"
+            >
+              <div class="cmp-title">
+                <span>
+                  <h1 class="cmp-title__text">Sponsored Products</h1>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="owl-carousel owl-theme refresh-carousel-div"
+      id="refresh-crousel"
+    >
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/27/79/27797601_0.jpg"
+          alt=""
+        />
+        <p>Nt23 Succulent Stripe Po Home Decore</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/27/22/27224201_0.jpg"
+          alt=""
+        />
+        <p>Wooden Block Perpetual Calendar</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/24/40/24407401_0.jpg"
+          alt=""
+        />
+        <p>Glass Candle Holder, 12 Oz- Assorted</p>
+        <h5>$5.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/02/97/02971502_0.jpg"
+          alt=""
+        />
+        <p>Pzf222 Bh Horz Word Sign Home Decore</p>
+        <h5>$3.50</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/27/77/27778001_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Soap Dispender, Assorted</p>
+        <h5>$4.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/19/09/19098201_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/28/84/28845401_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/02/92/02923501_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/17/20/17202601_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+      <div class="item refresh-crousel-item">
+        <img
+          src="https://dggo.dollargeneral.com/images/27/77/27775301_0.jpg"
+          alt=""
+        />
+        <p>Comfort Bay Striped Bath Towel, 30 X 50 In</p>
+        <h5>$6.00</h5>
+      </div>
+    </div>
+
+    <!-- ****************************footer******************************** -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h6>About DS</h6>
+            <ul>
+              <li>
+                <a
+                  href="https://careers.dollargeneral.com/"
+                  class="navigation-menu__link"
+                >
+                  DG Careers</a
+                >
+              </li>
+
+              <li>
+                <a href="about-us.html" class="navigation-menu__link">
+                  About Us</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://investor.dollargeneral.com/websites/dollargeneral/English/0/investor-relations.html"
+                  class="navigation-menu__link"
+                >
+                  Investor Information</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="organizational-tax-exempt-accounts.html"
+                  class="navigation-menu__link"
+                >
+                  Organizational Accounts</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://websso.dolgen.net/ssoa/default.aspx?siteid=72"
+                  class="navigation-menu__link"
+                >
+                  DG Me</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dgliteracy.org/"
+                  class="navigation-menu__link"
+                >
+                  Literacy Foundation</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://newscenter.dollargeneral.com/news/"
+                  class="navigation-menu__link"
+                >
+                  Newsroom</a
+                >
+              </li>
+
+              <li>
+                <a href="real-estate.html" class="navigation-menu__link">
+                  Real Estate</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://adr.dolgen.net/dispute/"
+                  class="navigation-menu__link"
+                >
+                  Alternative Dispute Resolution</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dgpartners.com/"
+                  class="navigation-menu__link"
+                >
+                  Vendors</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.rangeme.com/dollargeneral"
+                  class="navigation-menu__link"
+                >
+                  New Vendors</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dollargeneral.com/content/dam/webvisualassets/sitedownloads/Serving%20Others%20FY2021.pdf"
+                  class="navigation-menu__link"
+                >
+                  Serving Others</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Support</h6>
+            <ul>
+              <li>
+                <a href="help-center.html" class="navigation-menu__link">
+                  Help Center</a
+                >
+              </li>
+
+              <li>
+                <a href="my-information.html" class="navigation-menu__link">
+                  Track My Order</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="help-center?t=products.html"
+                  class="navigation-menu__link"
+                >
+                  Product Recalls</a
+                >
+              </li>
+
+              <li>
+                <a href="gift-card-balance.html" class="navigation-menu__link">
+                  Gift Card Balance</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="accessibility-statement.html"
+                  class="navigation-menu__link"
+                >
+                  Accessibility Statement</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.essentialaccessibility.com/dollar-general/?utm_source=dollargeneralhomepage&amp;utm_medium=iconlarge&amp;utm_term=eachannelpage&amp;utm_content=header&amp;utm_campaign=dollargeneral"
+                  class="navigation-menu__link"
+                >
+                  Accessibility Support</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="california-transparency.html"
+                  class="navigation-menu__link"
+                >
+                  California Supply Chain Act</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="ca-privacy-notice-employees-contractor.html"
+                  class="navigation-menu__link"
+                >
+                  California Privacy Notice for Employees</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://dg.clarip.com/dsr/create"
+                  class="navigation-menu__link"
+                >
+                  Your Privacy Choices</a
+                >
+              </li>
+
+              <li>
+                <a class="navigation-menu__link" href="www.dollargeneral.html">
+                  Cookie Preferences</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Stores</h6>
+            <ul>
+              <li>
+                <a href="store-locator.html" class="navigation-menu__link">
+                  Store Locator</a
+                >
+              </li>
+
+              <li>
+                <a href="store-directory.html" class="navigation-menu__link">
+                  Store Directory</a
+                >
+              </li>
+
+              <li>
+                <a href="Customer-Survey.html" class="navigation-menu__link">
+                  Store Survey (receipt required)</a
+                >
+              </li>
+
+              <li>
+                <a href="market.html" class="navigation-menu__link">
+                  DG Market</a
+                >
+              </li>
+
+              <li>
+                <a href="dgmarketpopshelf.html" class="navigation-menu__link">
+                  DG Market + pOpshelf</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.popshelf.com/"
+                  class="navigation-menu__link"
+                >
+                  pOpshelf</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="http://dgxstore.com/Pages/Index.aspx"
+                  class="navigation-menu__link"
+                >
+                  DGx</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Services</h6>
+            <ul>
+              <li>
+                <a href="fedex.html" class="navigation-menu__link"> FedEx</a>
+              </li>
+
+              <li>
+                <a href="DoorDash.html" class="navigation-menu__link">
+                  DoorDash</a
+                >
+              </li>
+
+              <li>
+                <a href="dg-pickup.html" class="navigation-menu__link">
+                  DG Pickup</a
+                >
+              </li>
+
+              <li>
+                <a href="dggo.html" class="navigation-menu__link">
+                  DG GO! &amp; Cart Calculator</a
+                >
+              </li>
+
+              <li>
+                <a href="app.html" class="navigation-menu__link">
+                  Download App</a
+                >
+              </li>
+
+              <li>
+                <a href="deals.html" class="navigation-menu__link"> Coupons</a>
+              </li>
+
+              <li>
+                <a href="spendwell.html" class="navigation-menu__link">
+                  spendwell</a
+                >
+              </li>
+
+              <li>
+                <a href="westernunion.html" class="navigation-menu__link">
+                  Western Union</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-prt">
+        <div class="footer-mini-logo">
+          <img src="images\logo_mini.png" alt="" />
+        </div>
+
+        <div class="playstoreandappstore">
+          <div class="appstore">
+            <img
+              src="https://www.dollargeneral.com/content/experience-fragments/dollargeneral/en/global-footer/master/_jcr_content/root/globalfooter/app-images/image.coreimg.100.300.png/1661990967164/app-store.png"
+              alt=""
+            />
+          </div>
+          <div class="playstore">
+            <img
+              src="https://www.dollargeneral.com/content/experience-fragments/dollargeneral/en/global-footer/master/_jcr_content/root/globalfooter/app-images/image_205323551.coreimg.100.300.png/1661990917826/google.png"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="socialmedia">
+          <div class="fb-div">
+            <a href="www.facebook.com"
+              ><i class="fa-brands fa-square-facebook"></i
+            ></a>
+          </div>
+          <div class="tw-div">
+            <a href=""><i class="fa-brands fa-square-twitter"></i></a>
+          </div>
+          <div class="insta-div">
+            <a href=""> <i class="fa-brands fa-square-instagram"></i></a>
+          </div>
+          <div class="pint-div">
+            <a href=""><i class="fa-brands fa-square-pinterest"></i></a>
+          </div>
+          <div class="in-div">
+            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+          <div class="yt-div">
+            <a href=""><i class="fa-brands fa-square-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="text-footer-end">
+          <p>Privacy | Terms</p>
+          <p>
+            © Copyright 2023. Dollar General Corporation. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+  integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+  integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://kit.fontawesome.com/e5a9c90922.js"
+  crossorigin="anonymous"
+></script>
+<script src="./scripts/index.js"></script>

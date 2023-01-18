@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="images/logo_mini.png" />
+    <link rel="stylesheet" href="./style/details.css" />
+
+    <title>Product Detail</title>
+  </head>
+  <body>
+    <nav
+      id="navigationBar"
+      class="navbar navbar-expand-lg navbar-dark bg-black"
+    >
+      <div id="nav-logo">
+        <a href="index.html">
+          <img id="nav-logo-img" src="images\logo.png" alt="" />
+        </a>
+      </div>
+      <div class="container-fluid">
+        <button
+          style="
+            border: 1px solid cyan;
+            position: absolute;
+            top: 15px;
+            left: 90%;
+          "
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown nav-dropdown">
+              <a
+                class="nav-link active dropdown-toggle nav-opt"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+                id="navbar-submenu"
+              >
+                <li><a class="dropdown-item" href="#">On Sale</a></li>
+                <li><a class="dropdown-item" href="beauty.html">Beauty</a></li>
+                <li>
+                  <a class="dropdown-item" href="Food&Beverage.html"
+                    >Food & Beverage</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Pet</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Auto & Hardware</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Baby</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" aria-current="page" href="#">
+                Coupons & Deals</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" href="#">Weekly Ads </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-opt" href="#">Careers </a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control navbar-search me-2"
+              type="search"
+              placeholder="Search for a product"
+              aria-label="Search"
+            />
+          </form>
+          <div id="nav-signin-id">
+            <a
+              href="signup.html"
+              class="fa-solid fa-circle-user singin-nav"
+            ></a>
+            <p class="signintxt">SignIn</p>
+          </div>
+        </div>
+      </div>
+      <div id="cartlogo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="white"
+          class="bi bi-bag-check-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+          />
+        </svg>
+        <p id="total-cart-item">Cart</p>
+      </div>
+    </nav>
+    <!-- ==========================main--section==================== -->
+    <div id="container">
+      <div id="top-section">
+        <div id="left-img-sec">
+          <div id="three-layer">
+            <img
+              id="main-img"
+              src=""
+              alt="main-img"
+              width="100%"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div id="right-text-sec">
+          <h5 id="brand-name">Dollar Store</h5>
+          <h1 id="product-title">Refined Stud Earrings</h1>
+          <p id="review-star">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <span id="reviewss">Write a review</span>
+          </p>
+          <p id="comments">
+            | <i class="fa fa-comments-o" aria-hidden="true"></i> Ask a question
+          </p>
+          <p id="price">$21.00</p>
+          <p id="afterpay">
+            <span>aftrepay</span> available for orders between $35 - <br />
+            $1,000 ⓘ
+          </p>
+          <p id="shipping">
+            <a href="javascript:void(0)">Shipping</a> calculated at checkout.
+          </p>
+          <p id="pay-in">
+            Pay in 4 interest-free installments for orders over $50 with
+          </p>
+          <p id="shoppay">
+            <strong>Shop</strong> <span>Pay</span>
+            <a href="javascript:void(0);">Learn more</a>
+          </p>
+          <p id="quantity">Quantity</p>
+          <div id="counter">
+            <button id="dec">-</button>
+            <button id="count-num">1</button>
+            <button id="inc">+</button>
+          </div>
+          <a href="shop-all.html" id="continue-shopping">Continue shopping</a>
+          <button id="add-to-cart">Add to Cart</button>
+          <button id="wishlist">View my Cart</button>
+          <button id="buy-it-now">checkout</button>
+          <p id="below-text">
+            Vintage gold metal with a circle of pearls and a center of small
+            stones.
+          </p>
+        </div>
+      </div>
+      <div id="free-shipping">
+        <p id="free-shipping-title">
+          <span>Free Shipping</span> <br />
+          Free shipping for orders over $75! Only applicable for US.
+        </p>
+      </div>
+      <div id="customer-review">
+        <h3 id="cus-title">CUSTOMER REVIEWS</h3>
+        <button id="ask-ques">Ask a question</button>
+        <button id="add-review">Add a review</button>
+        <div>
+          <button id="below-ask-ques">Reviews</button>
+          <button id="below-add-review">Questions</button>
+        </div>
+        <hr class="hr-bar" />
+        <p id="be-the-first">Be the first to write a <span>review</span></p>
+      </div>
+    </div>
+
+    <!-- ======================footer========================= -->
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h6>About DS</h6>
+            <ul>
+              <li>
+                <a
+                  href="https://careers.dollargeneral.com/"
+                  class="navigation-menu__link"
+                >
+                  DG Careers</a
+                >
+              </li>
+
+              <li>
+                <a href="about-us.html" class="navigation-menu__link">
+                  About Us</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://investor.dollargeneral.com/websites/dollargeneral/English/0/investor-relations.html"
+                  class="navigation-menu__link"
+                >
+                  Investor Information</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="organizational-tax-exempt-accounts.html"
+                  class="navigation-menu__link"
+                >
+                  Organizational Accounts</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://websso.dolgen.net/ssoa/default.aspx?siteid=72"
+                  class="navigation-menu__link"
+                >
+                  DG Me</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dgliteracy.org/"
+                  class="navigation-menu__link"
+                >
+                  Literacy Foundation</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://newscenter.dollargeneral.com/news/"
+                  class="navigation-menu__link"
+                >
+                  Newsroom</a
+                >
+              </li>
+
+              <li>
+                <a href="real-estate.html" class="navigation-menu__link">
+                  Real Estate</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://adr.dolgen.net/dispute/"
+                  class="navigation-menu__link"
+                >
+                  Alternative Dispute Resolution</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dgpartners.com/"
+                  class="navigation-menu__link"
+                >
+                  Vendors</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.rangeme.com/dollargeneral"
+                  class="navigation-menu__link"
+                >
+                  New Vendors</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.dollargeneral.com/content/dam/webvisualassets/sitedownloads/Serving%20Others%20FY2021.pdf"
+                  class="navigation-menu__link"
+                >
+                  Serving Others</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Support</h6>
+            <ul>
+              <li>
+                <a href="help-center.html" class="navigation-menu__link">
+                  Help Center</a
+                >
+              </li>
+
+              <li>
+                <a href="my-information.html" class="navigation-menu__link">
+                  Track My Order</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="help-center?t=products.html"
+                  class="navigation-menu__link"
+                >
+                  Product Recalls</a
+                >
+              </li>
+
+              <li>
+                <a href="gift-card-balance.html" class="navigation-menu__link">
+                  Gift Card Balance</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="accessibility-statement.html"
+                  class="navigation-menu__link"
+                >
+                  Accessibility Statement</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.essentialaccessibility.com/dollar-general/?utm_source=dollargeneralhomepage&amp;utm_medium=iconlarge&amp;utm_term=eachannelpage&amp;utm_content=header&amp;utm_campaign=dollargeneral"
+                  class="navigation-menu__link"
+                >
+                  Accessibility Support</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="california-transparency.html"
+                  class="navigation-menu__link"
+                >
+                  California Supply Chain Act</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="ca-privacy-notice-employees-contractor.html"
+                  class="navigation-menu__link"
+                >
+                  California Privacy Notice for Employees</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://dg.clarip.com/dsr/create"
+                  class="navigation-menu__link"
+                >
+                  Your Privacy Choices</a
+                >
+              </li>
+
+              <li>
+                <a class="navigation-menu__link" href="www.dollargeneral.html">
+                  Cookie Preferences</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Stores</h6>
+            <ul>
+              <li>
+                <a href="store-locator.html" class="navigation-menu__link">
+                  Store Locator</a
+                >
+              </li>
+
+              <li>
+                <a href="store-directory.html" class="navigation-menu__link">
+                  Store Directory</a
+                >
+              </li>
+
+              <li>
+                <a href="Customer-Survey.html" class="navigation-menu__link">
+                  Store Survey (receipt required)</a
+                >
+              </li>
+
+              <li>
+                <a href="market.html" class="navigation-menu__link">
+                  DG Market</a
+                >
+              </li>
+
+              <li>
+                <a href="dgmarketpopshelf.html" class="navigation-menu__link">
+                  DG Market + pOpshelf</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.popshelf.com/"
+                  class="navigation-menu__link"
+                >
+                  pOpshelf</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="http://dgxstore.com/Pages/Index.aspx"
+                  class="navigation-menu__link"
+                >
+                  DGx</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h6>Services</h6>
+            <ul>
+              <li>
+                <a href="fedex.html" class="navigation-menu__link"> FedEx</a>
+              </li>
+
+              <li>
+                <a href="DoorDash.html" class="navigation-menu__link">
+                  DoorDash</a
+                >
+              </li>
+
+              <li>
+                <a href="dg-pickup.html" class="navigation-menu__link">
+                  DG Pickup</a
+                >
+              </li>
+
+              <li>
+                <a href="dggo.html" class="navigation-menu__link">
+                  DG GO! &amp; Cart Calculator</a
+                >
+              </li>
+
+              <li>
+                <a href="app.html" class="navigation-menu__link">
+                  Download App</a
+                >
+              </li>
+
+              <li>
+                <a href="deals.html" class="navigation-menu__link"> Coupons</a>
+              </li>
+
+              <li>
+                <a href="spendwell.html" class="navigation-menu__link">
+                  spendwell</a
+                >
+              </li>
+
+              <li>
+                <a href="westernunion.html" class="navigation-menu__link">
+                  Western Union</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-prt">
+        <div class="footer-mini-logo">
+          <img src="images\logo_mini.png" alt="" />
+        </div>
+
+        <div class="playstoreandappstore">
+          <div class="appstore">
+            <img
+              src="https://www.dollargeneral.com/content/experience-fragments/dollargeneral/en/global-footer/master/_jcr_content/root/globalfooter/app-images/image.coreimg.100.300.png/1661990967164/app-store.png"
+              alt=""
+            />
+          </div>
+          <div class="playstore">
+            <img
+              src="https://www.dollargeneral.com/content/experience-fragments/dollargeneral/en/global-footer/master/_jcr_content/root/globalfooter/app-images/image_205323551.coreimg.100.300.png/1661990917826/google.png"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="socialmedia">
+          <div class="fb-div">
+            <a href="www.facebook.com"
+              ><i class="fa-brands fa-square-facebook"></i
+            ></a>
+          </div>
+          <div class="tw-div">
+            <a href=""><i class="fa-brands fa-square-twitter"></i></a>
+          </div>
+          <div class="insta-div">
+            <a href=""> <i class="fa-brands fa-square-instagram"></i></a>
+          </div>
+          <div class="pint-div">
+            <a href=""><i class="fa-brands fa-square-pinterest"></i></a>
+          </div>
+          <div class="in-div">
+            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+          <div class="yt-div">
+            <a href=""><i class="fa-brands fa-square-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="text-footer-end">
+          <p>Privacy | Terms</p>
+          <p>
+            © Copyright 2023. Dollar General Corporation. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://kit.fontawesome.com/e5a9c90922.js"
+  crossorigin="anonymous"
+></script>
+<script src="./scripts/details.js"></script>

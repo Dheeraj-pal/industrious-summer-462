@@ -1,0 +1,276 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  background: #feef02;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#navigationBar {
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 65px;
+}
+#nav-logo-img {
+  margin-left: 20px;
+  width: 170px;
+  height: 35px;
+}
+#nav-signin-id {
+  height: 40px;
+  display: flexbox;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+#nav-signin-id > a:hover {
+  color: #feef02;
+}
+.singin-nav {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+.signintxt {
+  color: white;
+  font-size: 12px;
+}
+
+.navbar-search {
+  margin: auto;
+  width: 200%;
+  height: 40px;
+}
+.nav-opt:hover {
+  text-decoration: underline;
+}
+.navbar-search {
+  width: 400px;
+}
+
+#navbar-submenu {
+  width: 200px;
+  margin-top: 11px;
+  margin-left: -5px;
+  background-color: #000000;
+  border-radius: 0;
+}
+#navbar-submenu > li > a {
+  color: white;
+}
+#navbar-submenu > li > a:hover {
+  background-color: #000000;
+  text-decoration: underline;
+  zoom: 110%;
+}
+.top-text-1 {
+  margin: auto;
+  width: 73%;
+  padding-top: 80px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.top-text-1 p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.mid-section-img-1 {
+  margin: auto;
+  width: 73%;
+  border: none;
+}
+
+#countResult {
+  width: 73%;
+  margin: auto;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+#product-cart {
+  width: 73%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 15px;
+  margin: auto;
+}
+
+#product-cart > div {
+  text-align: start;
+  margin-bottom: 10px;
+  margin: auto;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+#product-cart > div > img {
+  width: 100%;
+  padding: 20px;
+}
+#product-cart > div > h6 {
+  padding: 0 15px 0 15px;
+  font-weight: 500;
+}
+#product-cart > div > p {
+  padding: 0 15px 0 15px;
+  font-weight: 400;
+  font-size: 12px;
+}
+#product-cart > div > h5 {
+  padding: 0 15px 0 15px;
+  font-weight: 600;
+}
+
+.details-btn {
+  background-color: #feef02;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 30%;
+}
+
+footer {
+  margin-top: 50px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding-top: 40px;
+}
+
+.footer-container {
+  margin: auto;
+  text-align: left;
+  width: 100%;
+}
+.footer-row {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+}
+.footer-col {
+  padding-right: 20px;
+  width: 100%;
+}
+.footer-col > h6 {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  line-height: 1.25rem;
+  font-weight: 700;
+  padding-left: 20px;
+  padding-bottom: 8px;
+  text-decoration: underline;
+}
+
+.footer-col > ul > li > a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  line-height: 2rem;
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.5px;
+  padding-left: 20px;
+}
+.footer-col > ul > li > a:hover {
+  text-decoration: underline;
+}
+.footer-col > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-bottom-prt {
+  /* border: 1px solid white; */
+  text-align: center;
+  width: 25%;
+  margin: auto;
+  margin-top: 40px;
+}
+.footer-mini-logo > img {
+  width: 60px;
+  height: 60px;
+}
+.playstoreandappstore {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: auto;
+  margin-top: 40px;
+}
+.appstore {
+  padding: 10px;
+}
+.appstore > img {
+  width: 110%;
+  height: 40px;
+}
+.playstore {
+  padding: 10px;
+}
+.playstore > img {
+  width: 100%;
+  height: 40px;
+}
+
+.socialmedia {
+  display: flex;
+  width: 55%;
+  justify-content: space-evenly;
+  margin: 20px auto auto auto;
+}
+.socialmedia > div > a > i {
+  color: #feef02;
+  font-size: 1.2rem;
+}
+.socialmedia > div > a > i:hover {
+  color: azure;
+}
+
+.text-footer-end {
+  border: 1px solid black;
+  margin-top: 40px;
+}
+
+.text-footer-end > p {
+  font-size: 10px;
+  color: #dfdfdf;
+  margin-bottom: 20px;
+}
+
+.divpointer{
+  cursor: pointer;
+}
+#cartlogo {
+  margin: auto;
+  margin-right: 40px;
+  text-align: center;
+}
+#cartlogo > svg {
+  height: 28px;
+  /* width: 40px; */
+  font-weight: 800;
+}
+#cartlogo > p {
+  margin-top: 2px;
+  color: white;
+  font-size: 12px;
+}
