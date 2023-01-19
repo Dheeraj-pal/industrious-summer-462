@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      #nav {
+        width: 80%;
+        display: flex;
+        margin: auto;
+        justify-content: space-evenly;
+        margin-top: 30px;
+      }
+      #nav > a {
+        text-decoration: none;
+      }
+      #inpts {
+        width: 30%;
+        border: 1px solid white;
+        border-radius:10px ;
+        text-align: center;
+        margin: auto;
+        margin-top: 70px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      }
+      #inpts > form > input {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        height: 30px;
+        width: 250px;
+      }
+      #submit {
+        font-size: 16px;
+        padding: 5px 15px 5px 15px;
+        border-radius: 5px;
+        border: 1px solid;
+        color: white;
+        background-color: rgb(71, 71, 231);
+        margin-bottom: 30px;
+        margin-left: 35%;
+      }
+      #submit:hover {
+        background-color: rgb(26, 26, 226);
+      }
+      form{
+        width: 55%;
+        margin: auto;
+        text-align: left;
+      }
+      label{
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <a href="createProd.html">Create Product</a>
+      <a href="allProd.html">All Products</a>
+      <a href="../login.html">Log Out</a>
+    </div>
+    <div id="inpts">
+      <h1>Create Product</h1>
+      <form>
+        <label>Image:</label>
+        <input type="text" placeholder="image" id="image" /> <br />
+        <label>Title:</label>
+        <input type="text" placeholder="title" id="tit" /> <br />
+        <label>Reviews:</label>
+        <input type="text" placeholder="review" id="review" /> <br />
+        <label>Category:</label>
+        <input type="text" placeholder="category" id="cate" /> <br />
+        <label>Price:</label>
+        <input type="text" placeholder="price" id="price" /> <br />
+        <button id="submit">submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+<script>
+  document.querySelector("form").addEventListener("submit", create);
+
+  function create(event) {
+    event.preventDefault();
+
+    let title = document.getElementById("tit").value;
+    let img = document.getElementById("image").value;
+    let review = document.getElementById("review").value;
+    let category = document.getElementById("cate").value;
+    let price = document.getElementById("price").value;
+
+    let obj = {
+      img,
+      title,
+      review,
+      category,
+      price,
+    };
+
+    fetch("http://localhost:1999/products/create", {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((out) => console.log(out))
+      .catch((err) => console.log(err));
+  }
+</script>

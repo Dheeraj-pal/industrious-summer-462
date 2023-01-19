@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #nav {
+        width: 80%;
+        display: flex;
+        margin: auto;
+        justify-content: space-evenly;
+        margin-top: 30px;
+      }
+      #nav > a {
+        text-decoration: none;
+      }
+      #main {
+        width: 73%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-rows: auto;
+        grid-gap: 15px;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      #main > div {
+        text-align: start;
+        margin-bottom: 10px;
+        margin: auto;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+          rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      }
+
+      #main > div > img {
+        margin: auto;
+        width: 90%;
+        padding: 20px;
+      }
+      #main > div > h6 {
+        padding: 0 15px 0 15px;
+        font-weight: 500;
+      }
+      #main > div > p {
+        padding: 0 15px 0 15px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+      #main > div > h5 {
+        padding: 0 15px 0 15px;
+        font-weight: 600;
+      }
+      .details-btn {
+        font-size: 16px;
+        padding: 5px 15px 5px 15px;
+        border-radius: 5px;
+        border: 1px solid;
+        color: white;
+        background-color: rgb(71, 71, 231);
+        margin-bottom: 30px;
+        margin-left: 35%;
+      }
+      .details-btn:hover {
+        background-color: rgb(26, 26, 226);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <a href="createProd.html">Create Product</a>
+      <a href="allProd.html">All Products</a>
+      <a href="../login.html">Log Out</a>
+    </div>
+    <div id="main"></div>
+  </body>
+</html>
+<script>
+  let url = "http://localhost:1999/products";
+
+  async function getData() {
+    try {
+      let res = await fetch(url, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      let out = await res.json();
+      displayData(out);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  getData();
+
+  function displayData(beautyData) {
+    document.getElementById("main").innerHTML = "";
+
+    beautyData.forEach((data) => {
+      let divcart = document.createElement("div");
+      divcart.classList.add("divpointer");
+
+      let image = document.createElement("img");
+      image.src = data.img;
+
+      let title = document.createElement("h6");
+      title.innerText = data.title.substring(0, 55);
+
+      let reviews = document.createElement("p");
+      reviews.innerText = data.review;
+
+      let cost = document.createElement("h5");
+      cost.innerText = data.price;
+
+      let btn = document.createElement("button");
+      btn.innerText = "Delete";
+      btn.classList.add("details-btn");
+      btn.addEventListener("click", function () {
+        setData(data);
+        deleteusers();
+        // document.location.href = "allProd.html";
+      });
+
+      divcart.append(image, title, reviews, cost, btn);
+      document.getElementById("main").append(divcart);
+    });
+  }
+
+  function setData(el) {
+    let productData = [];
+    productData.push(el);
+    localStorage.setItem("local_Key", JSON.stringify(productData));
+    console.log(productData);
+    console.log();
+  }
+
+  function deleteusers() {
+    let id = JSON.parse(localStorage.getItem("local_Key"));
+    let URl = url + "/delete/" + id[0]._id;
+    console.log(URl);
+
+    try {
+      let response = fetch(`${url}/delete/${id[0]._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok == true) {
+        // let mobile = await response.json();
+        getData();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+</script>

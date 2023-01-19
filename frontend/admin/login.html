@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *{
+        font-family: sans-serif;
+      }
+      #h1txt {
+        font-size: 50px;
+        margin-top: 10px;
+      }
+      #main {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        width: 30%;
+        margin: auto;
+        margin-top: 50px;
+        text-align: center;
+        padding: 40px;
+        border-radius: 10px;
+      }
+      .lab{
+        font-size: 30px;
+      }
+      #email {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        height: 20px;
+        width: 97%;
+      }
+      #password {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        height: 20px;
+        width: 97%;
+      }
+      #btn{
+        font-size: 16px;
+        padding: 5px 15px 5px 15px;
+        border-radius: 5px;
+        border: 1px solid;
+        color: white;
+        background-color: rgb(71, 71, 231);
+        margin-left: 30%;
+      }
+      #btn:hover{
+        background-color: rgb(26, 26, 226);
+      }
+      form{
+        width: 50%;
+        text-align: start;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <h1 id="h1txt">ADMIN LOGIN</h1>
+      <form>
+        <label class="lab">Id</label> <br />
+        <input id="email" type="txt" placeholder="Id" /><br />
+        <label class="lab">Password</label><br />
+        <input id="password" type="password" placeholder="password" /><br />
+        <button id="btn">LOGIN</button>
+      </form>
+    </div>
+  </body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit", login)
+
+    function login(event){
+        event.preventDefault();
+
+        let email = document.getElementById("email").value;
+        let pass = document.getElementById("password").value;
+
+        if(pass=="user" && email=="admin"){
+            window.location.href = "/frontend/admin/dashboard.html"
+        }else{
+            alert("Wrong Credentials");
+        }
+    }
+</script>

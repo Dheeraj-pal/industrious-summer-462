@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="icon" type="image/x-icon" href="images/logo_mini.png" />
-    <link rel="stylesheet" href="./style/details.css" />
+    <link rel="stylesheet" href="./style/cart.css" />
 
     <title>Product Detail</title>
   </head>
@@ -104,7 +104,7 @@
               href="signup.html"
               class="fa-solid fa-circle-user singin-nav"
             ></a>
-            <p class="signintxt" id="inoutbtn">SignIn</p>
+            <p class="signintxt">SignIn</p>
           </div>
         </div>
       </div>
@@ -127,79 +127,38 @@
     </nav>
     <!-- ==========================main--section==================== -->
     <div id="container">
-      <div id="top-section">
-        <div id="left-img-sec">
-          <div id="three-layer">
-            <img
-              id="main-img"
-              src=""
-              alt="main-img"
-              width="100%"
-              loading="lazy"
-            />
-          </div>
-        </div>
-        <div id="right-text-sec">
-          <h5 id="brand-name">Dollar Store</h5>
-          <h1 id="product-title">Refined Stud Earrings</h1>
-          <p id="review-star">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <span id="reviewss">Write a review</span>
-          </p>
-          <p id="comments">
-            | <i class="fa fa-comments-o" aria-hidden="true"></i> Ask a question
-          </p>
-          <p id="price">$21.00</p>
-          <p id="afterpay">
-            <span>aftrepay</span> available for orders between $35 - <br />
-            $1,000 ⓘ
-          </p>
-          <p id="shipping">
-            <a href="javascript:void(0)">Shipping</a> calculated at checkout.
-          </p>
-          <p id="pay-in">
-            Pay in 4 interest-free installments for orders over $50 with
-          </p>
-          <p id="shoppay">
-            <strong>Shop</strong> <span>Pay</span>
-            <a href="javascript:void(0);">Learn more</a>
-          </p>
-          <p id="quantity">Quantity</p>
-          <div id="counter">
-            <button id="dec">-</button>
-            <button id="count-num">10</button>
-            <button id="inc">+</button>
-          </div>
-          <a href="shop-all.html" id="continue-shopping">Continue shopping</a>
-          <button id="add-to-cart">Add to Cart</button>
-          <button id="wishlist">View my Cart</button>
-          <button id="buy-it-now">checkout</button>
-          <p id="below-text">
-            Vintage gold metal with a circle of pearls and a center of small
-            stones.
-          </p>
-        </div>
+      <div id="cart-sec">
+        <h1>Your cart</h1>
+        <a href="shop-all.html">Continue shopping</a>
       </div>
-      <div id="free-shipping">
-        <p id="free-shipping-title">
-          <span>Free Shipping</span> <br />
-          Free shipping for orders over $75! Only applicable for US.
-        </p>
-      </div>
-      <div id="customer-review">
-        <h3 id="cus-title">CUSTOMER REVIEWS</h3>
-        <button id="ask-ques">Ask a question</button>
-        <button id="add-review">Add a review</button>
-        <div>
-          <button id="below-ask-ques">Reviews</button>
-          <button id="below-add-review">Questions</button>
+      <div id="cart-table">
+        <div id="table-heading">
+          <p>PRODUCT</p>
+          <p>QUANTITY</p>
+          <p>TOTAL</p>
         </div>
         <hr class="hr-bar" />
-        <p id="be-the-first">Be the first to write a <span>review</span></p>
+        <div id="products-list"></div>
+        <hr class="hr-bar" />
+      </div>
+      <div id="payment-option-sec">
+        <p id="subtotal-text">Subtotal <span id="subtotal"></span></p>
+        <p class="text">or 4 interest-free payments of $49.50 with</p>
+        <p id="afterpay"><span>aftrepay</span>ⓘ</p>
+        <p class="text">
+          Taxes and <a href="javascript:void(0);">shipping</a> calculated at
+          checkout
+        </p>
+        <button id="checkout">Check out</button><br />
+        <button id="shop-pay">Shop<span class="shop-pay-span">Pay</span></button
+        ><br />
+        <button id="paypal">
+          <i>
+            <span style="color: #003087">Pay</span
+            ><span style="color: #009cde">Pal</span>
+          </i></button
+        ><br />
+        <button id="g-pay">G Pay</button>
       </div>
     </div>
 
@@ -561,4 +520,4 @@
   src="https://kit.fontawesome.com/e5a9c90922.js"
   crossorigin="anonymous"
 ></script>
-<script src="./scripts/details.js"></script>
+<script src="./scripts/cart.js"></script>

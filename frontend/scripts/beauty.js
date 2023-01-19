@@ -45,7 +45,7 @@ function displayData(beautyData) {
     reviews.innerText = data.review;
 
     let cost = document.createElement("h5");
-    cost.innerText = data.price;
+    cost.innerText = `$${data.price}`;
 
     let btn = document.createElement("button");
     btn.innerText = "Show Details";
