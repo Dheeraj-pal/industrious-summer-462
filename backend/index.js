@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRouter);
-app.use(authenticate);
+// app.use(authenticate);
 app.use("/products", noteRouter);
 
 app.listen(1999, async () => {

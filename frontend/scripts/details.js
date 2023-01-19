@@ -1,6 +1,7 @@
 //cart item count
 let cart_items = JSON.parse(localStorage.getItem("local_Key")) || [];
 let loginUser = JSON.parse(localStorage.getItem("loginUser")) || null;
+console.log(cart_items[0].price,"******")
 
 let displayCartCount = () => {
   let total_cart_item = document.getElementById("total-cart-item");
@@ -45,14 +46,18 @@ let decreaseFunc = () => {
   if (count > 1 && count !== "1") {
     i--;
     document.getElementById("count-num").innerText = i;
+    localStorage.setItem("count", i)
   }
 };
+
 let increaseFunc = () => {
   let count = document.getElementById("count-num").innerText;
   let i = count;
   if (count >= 1) {
     i++;
     document.getElementById("count-num").innerText = i;
+    localStorage.setItem("count", i)
+    
   }
 };
 
