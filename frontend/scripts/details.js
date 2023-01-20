@@ -1,7 +1,11 @@
 //cart item count
+localStorage.removeItem("total")
 let cart_items = JSON.parse(localStorage.getItem("local_Key")) || [];
 let loginUser = JSON.parse(localStorage.getItem("loginUser")) || null;
-console.log(cart_items[0].price,"******")
+let k = +JSON.parse(localStorage.getItem("count"));
+let totalCost = +cart_items[0].price.split("").splice(1).join("");
+console.log(totalCost);
+localStorage.setItem("price", totalCost)
 
 let displayCartCount = () => {
   let total_cart_item = document.getElementById("total-cart-item");
@@ -46,7 +50,10 @@ let decreaseFunc = () => {
   if (count > 1 && count !== "1") {
     i--;
     document.getElementById("count-num").innerText = i;
-    localStorage.setItem("count", i)
+    localStorage.setItem("count", i);
+    totalCost = totalCost - k;
+    localStorage.setItem("total", totalCost);
+    console.log(totalCost,"---")
   }
 };
 
@@ -56,8 +63,10 @@ let increaseFunc = () => {
   if (count >= 1) {
     i++;
     document.getElementById("count-num").innerText = i;
-    localStorage.setItem("count", i)
-    
+    localStorage.setItem("count", i);
+    totalCost = totalCost + k;
+    localStorage.setItem("total", totalCost);
+    console.log(totalCost,"+++")
   }
 };
 
@@ -67,13 +76,13 @@ inc.addEventListener("click", increaseFunc);
 
 // product details append on html
 let appendProductDetails = (data) => {
-//   if (!data) return;
-    console.log(data[0])
+  //   if (!data) return;
+  console.log(data[0]);
   let prod_main_img = document.getElementById("main-img");
   prod_main_img.src = data[0].img;
 
   let review = document.getElementById("reviewss");
-  review.innerText = data[0].review
+  review.innerText = data[0].review;
 
   let prod_title = document.getElementById("product-title");
   prod_title.innerText = data[0].title;
@@ -83,8 +92,7 @@ let appendProductDetails = (data) => {
 };
 
 // append function invoke
-let product_details =
-  JSON.parse(localStorage.getItem("local_Key")) || null;
+let product_details = JSON.parse(localStorage.getItem("local_Key")) || null;
 appendProductDetails(product_details);
 
 //find product available or not
@@ -204,14 +212,14 @@ document.getElementById("buy-it-now").addEventListener("click", () => {
 
 let token = localStorage.getItem("token");
 // console.log(token)
-if(token){
-    let txt = document.querySelector(".signintxt");
-    txt.innerText = "Logout"
-    if(txt.innerText == "Logout"){
-        document.getElementById("inoutbtn").addEventListener("click", cleardata)
+if (token) {
+  let txt = document.querySelector(".signintxt");
+  txt.innerText = "Logout";
+  if (txt.innerText == "Logout") {
+    document.getElementById("inoutbtn").addEventListener("click", cleardata);
 
-        function cleardata(event){
-            localStorage.removeItem("token")
-        }
+    function cleardata(event) {
+      localStorage.removeItem("token");
     }
+  }
 }

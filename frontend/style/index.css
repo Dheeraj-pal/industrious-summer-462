@@ -487,6 +487,9 @@ footer {
     height: 200px;
     text-align: center;
   }
+  #cartlogo{
+    display: none;
+  }
 }
 
 #cartlogo {
