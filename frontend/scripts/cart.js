@@ -2,6 +2,9 @@
 let cart_items = JSON.parse(localStorage.getItem("cart_items")) || [];
 let loginUser = JSON.parse(localStorage.getItem("loginUser")) || null;
 let k = JSON.parse(localStorage.getItem("count"))
+let ttotal = JSON.parse(localStorage.getItem("total"))
+console.log(ttotal)
+let pprice = JSON.parse(localStorage.getItem("price"))
 let sumCount = 0;
 
 let displayCartCount = () => {
@@ -39,7 +42,7 @@ let displayTotalPrice = () => {
   let total_sum_amount = document.getElementById("subtotal");
   let totalSumAmount = 0;
   if (loginUser == null) {
-    total_sum_amount.innerText = `$${totalSumAmount.toFixed(2)}`;
+    total_sum_amount.innerText = ttotal;
   } else {
     if (cart_items.length > 0) {
       let elements = cart_items.filter((ele) => {
@@ -48,7 +51,7 @@ let displayTotalPrice = () => {
       for (let i = 0; i < elements.length; i++) {
         let x = elements[i].cartItems;
         for (let j = 0; j < x.length; j++) {
-          totalSumAmount += x[j].count * x[j].price;
+          totalSumAmount = ttotal;
         }
       }
       total_sum_amount.innerText = `$${totalSumAmount.toFixed(2)}`;
@@ -111,7 +114,7 @@ let appendFunction = (data) => {
     let p2 = document.createElement("p");
     let price = Number(element[0].price);
     price = price.toFixed(2);
-    p2.innerText = `$${price}`;
+    p2.innerText = `$${pprice}`;
     p2.setAttribute("id", "prod-price");
 
     prod_description.append(p1, p2);
@@ -163,8 +166,8 @@ let appendFunction = (data) => {
 
     // total row price
     let p3 = document.createElement("p");
-    let total = (element[0].price * element[0].count).toFixed(2);
-    totalRowPrice += +total;
+    let total = ttotal;
+    totalRowPrice += +total.toFixed(2);
     p3.innerText = `$${total}`;
 
     // increment the counter by one

@@ -258,7 +258,7 @@ footer {
   margin-bottom: 20px;
 }
 
-.divpointer{
+.divpointer {
   cursor: pointer;
 }
 
@@ -276,4 +276,9 @@ footer {
   margin-top: 2px;
   color: white;
   font-size: 12px;
+}
+@media all and (max-width: 991px) {
+  #cartlogo {
+    display: none;
+  }
 }
