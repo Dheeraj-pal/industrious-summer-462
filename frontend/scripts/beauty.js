@@ -1,4 +1,4 @@
-let url = "http://localhost:1999/products";
+let url = "https://zany-rose-lemming-veil.cyclic.app/products";
 
 async function getData() {
   try {

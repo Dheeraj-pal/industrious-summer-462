@@ -436,6 +436,9 @@ footer {
   #payment-option-sec {
     width: 90%;
   }
+  #cartlogo {
+    display: none;
+  }
 }
 @media all and (min-width: 427px) and (max-width: 768px) {
   #cart-sec {
@@ -452,6 +455,9 @@ footer {
   }
   #payment-option-sec {
     width: 90%;
+  }
+  #cartlogo {
+    display: none;
   }
 }
 @media all and (max-width: 426px) {
@@ -478,5 +484,8 @@ footer {
   #payment-option-sec {
     width: 90%;
     text-align: center;
+  }
+  #cartlogo {
+    display: none;
   }
 }

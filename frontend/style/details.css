@@ -472,6 +472,9 @@ footer {
   #customer-review {
     width: 90%;
   }
+  #cartlogo {
+    display: none;
+  }
 }
 @media all and (min-width: 427px) and (max-width: 768px) {
   #top-section {
@@ -490,6 +493,9 @@ footer {
   }
   #customer-review {
     width: 90%;
+  }
+  #cartlogo {
+    display: none;
   }
 }
 @media all and (max-width: 426px) {
@@ -512,6 +518,9 @@ footer {
   }
   #customer-review {
     width: 90%;
+  }
+  #cartlogo {
+    display: none;
   }
 }
 
