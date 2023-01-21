@@ -14,7 +14,7 @@ function register(event) {
 
   // console.log(user);
 
-  fetch("http://localhost:1999/users/login", {
+  fetch("https://zany-rose-lemming-veil.cyclic.app/users/login", {
     method: "POST",
     body: JSON.stringify(user),
     headers: {

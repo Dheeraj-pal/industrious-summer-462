@@ -13,7 +13,7 @@ let displayCartCount = () => {
   let total_cart_item = document.getElementById("total-cart-item");
   let sumCount = 0;
   if (loginUser == null) {
-    total_cart_item.innerText = sumCount;
+    total_cart_item.innerText = k;
   } else {
     if (cart_items.length > 0) {
       let elements = cart_items.filter((ele) => {
@@ -26,7 +26,7 @@ let displayCartCount = () => {
           sumCount += x[j].count;
         }
       }
-      total_cart_item.innerText = sumCount;
+      total_cart_item.innerText = k;
     } else {
       total_cart_item.innerText = sumCount;
     }
@@ -242,3 +242,16 @@ document.getElementById("checkout").addEventListener("click", () => {
   if (flag) window.location.href = "checkout.html";
   else alert("Please select a cart item");
 });
+let token = localStorage.getItem("token");
+// console.log(token)
+if (token) {
+  let txt = document.querySelector(".signintxt");
+  txt.innerText = "Logout";
+  if (txt.innerText == "Logout") {
+    document.getElementById("inoutbtn").addEventListener("click", cleardata);
+
+    function cleardata(event) {
+      localStorage.removeItem("token");
+    }
+  }
+}
