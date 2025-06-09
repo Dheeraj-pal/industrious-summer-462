@@ -1,4 +1,4 @@
-let url = "https://zany-rose-lemming-veil.cyclic.app/products";
+let url = "https://industrious-summer-462-u3dp.onrender.com/products";
 
 async function getData() {
   try {

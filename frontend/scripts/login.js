@@ -14,7 +14,7 @@ function register(event) {
 
   // console.log(user);
 
-  fetch("https://zany-rose-lemming-veil.cyclic.app/users/login", {
+  fetch("https://industrious-summer-462-u3dp.onrender.com/users/login", {
     method: "POST",
     body: JSON.stringify(user),
     headers: {

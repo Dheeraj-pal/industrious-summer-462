@@ -17,7 +17,7 @@ function register() {
   localStorage.setItem("signupData", JSON.stringify(user));
 
 
-  fetch("https://zany-rose-lemming-veil.cyclic.app/users/register", {
+  fetch("https://industrious-summer-462-u3dp.onrender.com/users/register", {
     method: "POST",
     body: JSON.stringify(user),
     headers: {
