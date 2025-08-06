@@ -1,31 +1,45 @@
-document.querySelector("form").addEventListener("submit", register);
-
-function register(event) {
+document.querySelector("form").addEventListener("submit", async function(event) {
   event.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("inpass").value;
 
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("inpass").value;
+  if (!email || !password) {
+    if (window.componentUtils && window.componentUtils.showToast) {
+      window.componentUtils.showToast('Email and password are required', 'error');
+    } else {
+      alert('Email and password are required');
+    }
+    return;
+  }
 
-  let user = {
-    email,
-    pass,
-  };
-  localStorage.setItem("loginUser", JSON.stringify(user))
+  const payload = { email, password };
 
-  // console.log(user);
-
-  fetch("https://industrious-summer-462-u3dp.onrender.com/users/login", {
-    method: "POST",
-    body: JSON.stringify(user),
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-      localStorage.setItem("token", res.token);
-      window.location.href = "index.html";
-    })
-    .catch((err) => console.log(err, "Wrong credentails"));
-}
+  try {
+    const response = await fetch('http://localhost:3030/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (response.ok && data.statusCode === 201 && data.data && data.data.access_token) {
+      localStorage.setItem('token', data.data.access_token);
+      if (window.componentUtils && window.componentUtils.showToast) {
+        window.componentUtils.showToast('Login successful! Redirecting...', 'success');
+      }
+      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+    } else {
+      const msg = data.message || 'Login failed';
+      if (window.componentUtils && window.componentUtils.showToast) {
+        window.componentUtils.showToast(msg, 'error');
+      } else {
+        alert(msg);
+      }
+    }
+  } catch (err) {
+    if (window.componentUtils && window.componentUtils.showToast) {
+      window.componentUtils.showToast('Network error. Please try again.', 'error');
+    } else {
+      alert('Network error. Please try again.');
+    }
+  }
+});

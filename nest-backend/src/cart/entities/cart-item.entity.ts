@@ -21,4 +21,16 @@ export class CartItem {
 
   @Column('decimal', { precision: 10, scale: 2 })
   subtotal: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  mrp: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  savings: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  taxAmount: number;
+
+  @Column('float', { default: 0 })
+  gstRate: number;
 } 

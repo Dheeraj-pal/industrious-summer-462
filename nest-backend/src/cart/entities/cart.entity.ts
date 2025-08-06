@@ -18,6 +18,30 @@ export class Cart {
   @Column('decimal', { precision: 10, scale: 2, default: 0 })
   totalAmount: number;
 
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  subtotal: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  totalTax: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  totalSavings: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  totalMRP: number;
+
+  @Column({ nullable: true })
+  couponCode: string;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  couponDiscount: number;
+
+  @Column({ nullable: true })
+  appliedCouponId: string;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  deliveryCharge: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

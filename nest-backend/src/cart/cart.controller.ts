@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { CartService } from './cart.service';
 import { AddToCartDto } from './dto/add-to-cart.dto';
 import { UpdateCartItemDto } from './dto/update-cart-item.dto';
@@ -15,7 +15,7 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Get()
-  @Roles('user', 'admin')
+  @Roles('customer', 'admin')
   @ApiOperation({ summary: 'Get current user cart' })
   @ApiResponse({ status: 200, description: 'Return the cart.' })
   getCart(@Request() req) {
@@ -23,7 +23,7 @@ export class CartController {
   }
 
   @Post('items')
-  @Roles('user', 'admin')
+  @Roles('customer', 'admin')
   @ApiOperation({ summary: 'Add item to cart' })
   @ApiResponse({ status: 201, description: 'Item added to cart successfully.' })
   addToCart(@Request() req, @Body() addToCartDto: AddToCartDto) {
@@ -31,7 +31,7 @@ export class CartController {
   }
 
   @Patch('items/:id')
-  @Roles('user', 'admin')
+  @Roles('customer', 'admin')
   @ApiOperation({ summary: 'Update cart item quantity' })
   @ApiResponse({ status: 200, description: 'Cart item updated successfully.' })
   updateCartItem(
@@ -43,7 +43,7 @@ export class CartController {
   }
 
   @Delete('items/:id')
-  @Roles('user', 'admin')
+  @Roles('customer', 'admin')
   @ApiOperation({ summary: 'Remove item from cart' })
   @ApiResponse({ status: 200, description: 'Item removed from cart successfully.' })
   removeFromCart(@Request() req, @Param('id') cartItemId: string) {
@@ -51,10 +51,34 @@ export class CartController {
   }
 
   @Delete()
-  @Roles('user', 'admin')
+  @Roles('customer', 'admin')
   @ApiOperation({ summary: 'Clear cart' })
   @ApiResponse({ status: 200, description: 'Cart cleared successfully.' })
   clearCart(@Request() req) {
     return this.cartService.clearCart(req.user.id);
+  }
+
+  @Post('apply-coupon')
+  @Roles('customer', 'admin')
+  @ApiOperation({ summary: 'Apply coupon to cart' })
+  @ApiResponse({ status: 200, description: 'Coupon applied successfully.' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        couponCode: { type: 'string', description: 'Category name' }
+      },
+    },
+  })
+  applyCoupon(@Request() req, @Body('couponCode') couponCode: string) {
+    return this.cartService.applyCoupon(req.user.id, couponCode);
+  }
+
+  @Post('remove-coupon')
+  @Roles('customer', 'admin')
+  @ApiOperation({ summary: 'Remove coupon from cart' })
+  @ApiResponse({ status: 200, description: 'Coupon removed successfully.' })
+  removeCoupon(@Request() req) {
+    return this.cartService.removeCoupon(req.user.id);
   }
 }

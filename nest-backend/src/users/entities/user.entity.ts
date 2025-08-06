@@ -2,6 +2,14 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { Exclude } from 'class-transformer';
 import { Order } from '../../orders/entities/order.entity';
 import { Cart } from '../../cart/entities/cart.entity';
+import { Address } from '../../addresses/entities/address.entity';
+
+export enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+  SUPER_ADMIN = 'super_admin',
+  CUSTOMER = 'customer',
+}
 
 @Entity('users')
 export class User {
@@ -21,8 +29,8 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column({ default: 'user' })
-  role: string;
+  @Column({ type: 'enum', enum: Role, default: Role.USER })
+  role: Role;
 
   @Column({ default: true })
   isActive: boolean;
@@ -33,9 +41,12 @@ export class User {
   @OneToMany(() => Cart, cart => cart.user)
   carts: Cart[];
 
+  @OneToMany(() => Address, address => address.user)
+  addresses: Address[];
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
-} 
+}

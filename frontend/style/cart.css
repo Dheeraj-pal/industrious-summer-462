@@ -18,8 +18,6 @@
   background: #555;
 }
 #navigationBar {
-  position: fixed;
-  margin-top: -40px;
   z-index: 1;
   width: 100vw;
   height: 65px;
@@ -210,6 +208,41 @@ footer {
 }
 
 /* =================================================================================================================== */
+#counter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+#dec,
+#inc {
+  background: #f8f9fa;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+}
+
+#dec:hover,
+#inc:hover {
+  background: #e9ecef;
+}
+
+#count-num {
+  background: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: #333;
+}
 
 #cart-sec {
   width: 75%;
@@ -375,6 +408,9 @@ footer {
   border: 1px solid #000000;
   outline: 1px solid #000000;
 }
+#checkout-btn {
+  background-color: #feef02;
+}
 #shop-pay {
   background-color: #481cf1;
   color: white;
@@ -488,4 +524,154 @@ footer {
   #cartlogo {
     display: none;
   }
+}
+
+/* Modern Cart Styles */
+.cart-item {
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.cart-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+/* .quantity-controls {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+} */
+
+.quantity-display {
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+.gst-details {
+  background-color: #f8f9fa;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Applied Coupon Styles */
+.applied-coupon-container {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+#coupon-code:focus {
+  border-color: #feef02;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+#apply-coupon-btn {
+  background-color: #feef02;
+}
+
+/* Cart Sidebar Styles */
+#cart-sidebar {
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+}
+
+/* Loading Overlay */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Toast Notifications */
+#toast-container {
+  z-index: 9999;
+}
+
+/* Empty Cart and Error Styles */
+.empty-cart-container,
+.error-container {
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Coupon Section */
+
+#coupon-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#coupon-section .card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+#coupon-section .card-title {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Order Summary Card */
+#cart-totals .card {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+#cart-totals .card-title {
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.gst-breakdown {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+/* Checkout Button */
+#checkout-btn {
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#checkout-btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -4,8 +4,6 @@ import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../auth/guards/roles.guard';
-import { Roles } from '../auth/decorators/roles.decorator';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -32,8 +30,8 @@ export class OrdersController {
   @ApiOperation({ summary: 'Get an order by id' })
   @ApiResponse({ status: 200, description: 'Return the order.' })
   @ApiResponse({ status: 404, description: 'Order not found.' })
-  findOne(@Request() req, @Param('id') id: string) {
-    return this.ordersService.findOne(id, req.user.id);
+  findOne(@Param('id') id: string) {
+    return this.ordersService.findOne(id);
   }
 
   @Patch(':id')

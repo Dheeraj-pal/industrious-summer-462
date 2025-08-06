@@ -1,38 +1,52 @@
-document.querySelector("form").addEventListener("submit", register);
+document.querySelector("form").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const phone = document.getElementById("phone").value.trim();
 
-function register() {
-  
-  let name = document.getElementById("fname").value;
-  let email = document.getElementById("eMail").value;
-  let pass = document.getElementById("Pass").value;
+  if (!firstName || !lastName || !email || !password || !phone) {
+    if (window.componentUtils && window.componentUtils.showToast) {
+      window.componentUtils.showToast('All fields are required', 'error');
+    } else {
+      alert('All fields are required');
+    }
+    return;
+  }
 
-  let user = {
-    name,
-    email,
-    pass,
-  };
+  const payload = { firstName, lastName, email, password, phone };
 
-  console.log(user)
+  try {
+    const response = await fetch('http://localhost:3030/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (response.ok && data.statusCode === 201 && data.data && data.data.access_token) {
+      localStorage.setItem('token', data.data.access_token);
+      if (window.componentUtils && window.componentUtils.showToast) {
+        window.componentUtils.showToast('Signup successful! Redirecting...', 'success');
+      }
+      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+    } else {
+      const msg = data.message || 'Signup failed';
+      if (window.componentUtils && window.componentUtils.showToast) {
+        window.componentUtils.showToast(msg, 'error');
+      } else {
+        alert(msg);
+      }
+    }
+  } catch (err) {
+    if (window.componentUtils && window.componentUtils.showToast) {
+      window.componentUtils.showToast('Network error. Please try again.', 'error');
+    } else {
+      alert('Network error. Please try again.');
+    }
+  }
+});
 
-  localStorage.setItem("signupData", JSON.stringify(user));
-
-
-  fetch("https://industrious-summer-462-u3dp.onrender.com/users/register", {
-    method: "POST",
-    body: JSON.stringify(user),
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((res) => {res.json(); alert("yaha to aagya")})
-    .then((res) => {
-      alert("registered")
-      console.log(res);
-    })
-    .catch((err) => console.log(err, "wrong credentials"));
-
-}
-// ***********************************************************************
 
 let cart_items = JSON.parse(localStorage.getItem("cart_items")) || [];
 let loginUser = JSON.parse(localStorage.getItem("loginUser")) || null;

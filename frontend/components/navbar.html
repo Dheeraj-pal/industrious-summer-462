@@ -1,0 +1,148 @@
+<!-- Navigation Bar Component -->
+<nav id="navigationBar" class="navbar navbar-expand-lg navbar-dark bg-black">
+  <div id="nav-logo">
+    <a href="index.html">
+      <img id="nav-logo-img" src="images\logo.png" alt="" />
+    </a>
+  </div>
+  <!-- Mobile Icons Container -->
+  <div class="mobile-icons-container d-flex d-lg-none">
+    <!-- Search icon for mobile view -->
+    <div class="search-icon-container">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+    <!-- User icon for mobile view -->
+    <div class="user-icon-container">
+      <i class="fa-solid fa-circle-user singin-nav" id="mobile-user-icon"></i>
+    </div>
+    <!-- Cart icon for mobile view -->
+    <div class="cart-icon-container">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        fill="white"
+        class="bi bi-bag-check-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+        />
+      </svg>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: end;" class="container-fluid">
+    <button
+      id="nav-toggler"
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown nav-dropdown">
+          <a
+            class="nav-link active dropdown-toggle nav-opt"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categories
+          </a>
+          <ul
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+            id="navbar-submenu"
+          >
+            <li><a class="dropdown-item" href="#" id="on-sale-link">On Sale</a></li>
+            <li><a class="dropdown-item" href="category.html?id=beauty&name=Beauty">Beauty</a></li>
+            <li>
+              <a class="dropdown-item" href="category.html?id=food-beverage&name=Food%20%26%20Beverage"
+                >Food & Beverage</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="category.html?id=pet&name=Pet">Pet</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="category.html?id=auto-hardware&name=Auto%20%26%20Hardware">Auto & Hardware</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="category.html?id=baby&name=Baby">Baby</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active nav-opt" aria-current="page" href="#">
+            Coupons & Deals</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active nav-opt" href="#">Weekly Ads </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active nav-opt" href="#">Careers </a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <!-- Add search results container (hidden on mobile, shown on desktop) -->
+        <div class="search-container position-relative d-none d-lg-block">
+          <input class="form-control navbar-search me-2" 
+                 type="search" 
+                 placeholder="Search for a product"
+                 id="navbarSearchInput"
+                 aria-label="Search">
+          <div class="search-results"></div>
+        </div>
+      </form>
+      <div id="nav-signin-id" class="position-relative d-none d-lg-flex">
+        <div class="signin-trigger d-flex align-items-center justify-content-center">
+          <a
+            id="inoutbtn"
+            href="javascript:void(0);"
+            class="fa-solid fa-circle-user singin-nav"
+          >
+          </a>
+        </div>
+        <div class="signin-dropdown">
+          <ul class="list-unstyled m-0 p-0">
+            <li class="signin-item" id="signin-logout-item">
+              <a href="login.html" id="signin-logout-link">Sign In</a>
+            </li>
+            <li class="signin-item">
+              <a href="signup.html">Create Account</a>
+            </li>
+            <li class="signin-item" id="saved-addresses-item">
+              <a href="addresses.html">Saved Addresses</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Desktop Cart Icon -->
+  <div id="cartlogo" class="d-none d-lg-flex">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      fill="white"
+      class="bi bi-bag-check-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
+      />
+    </svg>
+  </div>
+</nav>

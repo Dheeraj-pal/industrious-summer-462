@@ -21,28 +21,31 @@
       <div id="content">
         <h1>Create your free account</h1>
         <form>
-          <div id="inpname">
-            <label>Full Name</label> <br />
-            <input id="fname" type="name" placeholder="Enter your full name" />
+          <div id="inpfirstname">
+            <label>First Name</label> <br />
+            <input id="firstName" type="text" placeholder="Enter your first name" required />
+          </div>
+          <div id="inplastname">
+            <label>Last Name</label> <br />
+            <input id="lastName" type="text" placeholder="Enter your last name" required />
           </div>
           <div id="inpemail">
-            <label>E-Mail</label><br />
-            <input id="eMail" type="email" placeholder="Enter Your EMail" />
+            <label>Email</label><br />
+            <input id="email" type="email" placeholder="Enter your email" required />
           </div>
           <div id="inppass">
             <label>Password</label><br />
-            <input
-              id="Pass"
-              type="password"
-              placeholder="Enter Your Password"
-            />
+            <input id="password" type="password" placeholder="Enter your password" required />
+          </div>
+          <div id="inpphone">
+            <label>Phone</label><br />
+            <input id="phone" type="tel" placeholder="Enter your phone number" required />
           </div>
           <div id="up">
             <button class="btn" type="submit">SIGN UP</button>
           </div>
-
           <div id="google">
-            <button id="googlebtn">
+            <button id="googlebtn" type="button">
               <img src="./images/google-logo.png" alt="" />CONTINUE WITH GOOGLE
             </button>
             <p>Continue with Apple ID</p>
