@@ -49,13 +49,33 @@ export class CreateProductDto {
   @IsOptional()
   gender?: Gender;
 
-  // @ApiProperty({ description: 'Is deal of the week?', required: false })
-  // @IsBoolean()
-  // @IsOptional()
-  // isDealOfTheWeek?: boolean;
+  @ApiProperty({ description: 'Is deal of the week?', required: false })
+  @IsBoolean()
+  @IsOptional()
+  isDealOfTheWeek?: boolean;
 
-  // @ApiProperty({ description: 'Is sponsored product?', required: false })
-  // @IsBoolean()
-  // @IsOptional()
-  // isSponsored?: boolean;
+  @ApiProperty({ description: 'Is sponsored product?', required: false })
+  @IsBoolean()
+  @IsOptional()
+  isSponsored?: boolean;
+
+  @ApiProperty({ description: 'Is featured product?', required: false })
+  @IsBoolean()
+  @IsOptional()
+  isFeaturedProduct?: boolean;
+
+  @ApiProperty({ description: 'Is popular on site?', required: false })
+  @IsBoolean()
+  @IsOptional()
+  isPopularOnSite?: boolean;
+
+  @ApiProperty({ description: 'Is active?', required: false })
+  @IsBoolean()
+  @IsOptional()
+  isActive?: boolean;
+
+  @ApiProperty({ description: 'GST rate', required: false })
+  @IsNumber()
+  @IsOptional()
+  gstRate?: number;
 }
