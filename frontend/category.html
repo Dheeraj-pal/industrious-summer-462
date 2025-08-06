@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/x-icon" href="images/logo_mini.png" />
+    <title>Category | Dollar Store</title>
+    <link rel="stylesheet" href="./style/navbar.css" />
+    <link rel="stylesheet" href="./style/category.css" />
+    <link rel="stylesheet" href="./style/footer.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="error-message d-none">
+      <img src="./images/404.svg" width="300px" alt="not_found">
+      <h3>Oops! Something went wrong</h3>
+      <p>Please try refreshing the page or contact support if the problem persists.</p>
+      <button class="btn btn-primary" onclick="loadCategoryData()">Retry</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="category-content" class="container mt-4 d-none">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" id="category-breadcrumb">Category</li>
+        </ol>
+      </nav>
+
+      <!-- Category Header -->
+      <div class="section-divider">
+        <h1 id="category-title">Category Products</h1>
+      </div>
+      
+      <div class="row" id="main-section">
+        <!-- Filters -->
+        <div class="col-md-3 mb-4 main-filter-section">
+          <div class="filter-section" id="sort-filter">
+            <h5 class="filter-title">Filters</h5>
+            <div class="mb-3">
+              <label for="sort-select" class="form-label">Sort By</label>
+              <select class="form-select" id="sort-select" onchange="applySorting()">
+                <option value="default">Default</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="price-high-low">Price: High to Low</option>
+                <option value="name-a-z">Name: A to Z</option>
+                <option value="name-z-a">Name: Z to A</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Price Range</label>
+              <div class="price-range">
+                <input type="number" class="form-control price-input" id="min-price" placeholder="Min" min="0">
+                <span>to</span>
+                <input type="number" class="form-control price-input" id="max-price" placeholder="Max" min="0">
+              </div>
+              <button class="btn btn-sm mt-2" onclick="applyPriceFilter()">Apply</button>
+            </div>
+            
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="in-stock-only" onchange="applyFilters()">
+                <label class="form-check-label" for="in-stock-only">
+                  In Stock Only
+                </label>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="on-sale-only" onchange="applyFilters()">
+                <label class="form-check-label" for="on-sale-only">
+                  On Sale Only
+                </label>
+              </div>
+            </div>
+            
+            <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">Reset Filters</button>
+          </div>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="col-md-9">
+          <div id="products-count" class="mb-3">Showing 0 products</div>
+          <div id="products-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Products will be dynamically added here -->
+          </div>
+          
+          <!-- Pagination -->
+          <nav aria-label="Product pagination">
+            <ul class="pagination" id="pagination">
+              <!-- Pagination will be dynamically added here -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/e5a9c90922.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/components.js"></script>
+    <script src="scripts/category.js"></script>
+  </body>
+</html>
+

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNumber, IsUUID, Min, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsUUID, Min, IsOptional, IsArray, IsEnum, IsBoolean } from 'class-validator';
+import { Gender } from '../enums/gender.enum';
 
 export class CreateProductDto {
   @ApiProperty({ description: 'Product name' })
@@ -15,17 +16,46 @@ export class CreateProductDto {
   @Min(0)
   price: number;
 
+  @ApiProperty({ description: 'Product MRP (maximum retail price)', required: false })
+  @IsNumber()
+  @Min(0)
+  mrp?: number;
+
   @ApiProperty({ description: 'Product stock quantity' })
   @IsNumber()
   @Min(0)
   stock: number;
 
+  @ApiProperty({ description: 'Product brand name' })
+  @IsString()
+  @IsOptional()
+  brand?: string;
+
+  @ApiProperty({
+    type: 'array',
+    items: { type: 'string', format: 'binary' },
+    description: 'Product images',
+    required: false,
+  })
+  @IsOptional()
+  images?: any[];
+
   @ApiProperty({ description: 'Category ID' })
   @IsUUID()
   categoryId: string;
 
-  @ApiProperty({ description: 'Product image URL', required: false })
-  @IsString()
+  @ApiProperty({ enum: Gender, description: 'Gender', required: false })
+  @IsEnum(Gender)
   @IsOptional()
-  imageUrl?: string;
-} 
+  gender?: Gender;
+
+  // @ApiProperty({ description: 'Is deal of the week?', required: false })
+  // @IsBoolean()
+  // @IsOptional()
+  // isDealOfTheWeek?: boolean;
+
+  // @ApiProperty({ description: 'Is sponsored product?', required: false })
+  // @IsBoolean()
+  // @IsOptional()
+  // isSponsored?: boolean;
+}

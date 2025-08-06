@@ -8,7 +8,7 @@ export default registerAs('app', () => ({
     port: parseInt(process.env.DB_PORT || '5432', 10),
     username: process.env.DB_USERNAME || 'postgres',
     password: String(process.env.DB_PASSWORD || 'postgres'),
-    database: process.env.DB_DATABASE,
+    database: process.env.DB_DATABASE || 'dollar-general-100625',
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'your-super-secret-key-change-in-production',

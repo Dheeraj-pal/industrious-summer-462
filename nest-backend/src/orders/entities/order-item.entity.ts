@@ -21,4 +21,10 @@ export class OrderItem {
 
   @Column('decimal', { precision: 10, scale: 2 })
   subtotal: number;
+
+  @Column('float', { default: 0 })
+  gstRate: number;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  gstAmount: number;
 } 

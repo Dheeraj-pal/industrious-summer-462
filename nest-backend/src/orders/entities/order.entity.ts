@@ -39,6 +39,15 @@ export class Order {
   @Column({ nullable: true })
   trackingNumber: string;
 
+  @Column({ nullable: true })
+  couponCode: string;
+
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  couponDiscount: number;
+
+  @Column({ nullable: true })
+  couponType: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

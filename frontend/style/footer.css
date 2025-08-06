@@ -1,0 +1,156 @@
+footer {
+  margin-top: 50px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding-top: 40px;
+}
+
+.footer-container {
+  margin: auto;
+  text-align: left;
+  width: 100%;
+}
+
+.footer-row {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap; /* allow wrap on small screens */
+  gap: 24px;
+}
+
+.footer-col {
+  padding-right: 20px;
+  flex: 1 1 200px; /* responsive columns */
+  min-width: 180px;
+}
+
+.footer-col > h6 {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  line-height: 1.25rem;
+  font-weight: 700;
+  padding-left: 20px;
+  padding-bottom: 8px;
+  text-decoration: underline;
+}
+
+.footer-col > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-col > ul > li > a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  line-height: 2rem;
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.5px;
+  padding-left: 20px;
+}
+
+.footer-col > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom-prt {
+  text-align: center;
+  width: 100%;
+  margin: 40px auto 0 auto;
+}
+
+.footer-mini-logo > img {
+  width: 60px;
+  height: 60px;
+}
+
+.playstoreandappstore {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  /* margin: 40px auto 0 auto; */
+}
+
+.appstore,
+.playstore {
+  padding: 10px;
+}
+
+.appstore > img,
+.playstore > img {
+  width: auto;
+  height: 40px;
+}
+
+.socialmedia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.socialmedia > div > a > i {
+  color: #feef02;
+  font-size: 1.2rem;
+}
+
+.socialmedia > div > a > i:hover {
+  color: azure;
+}
+
+.text-footer-end {
+  margin-top: 40px;
+}
+
+.text-footer-end > p {
+  font-size: 10px;
+  color: #dfdfdf;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+}
+
+@media (max-width: 610px) {
+  .footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .footer-col {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .footer-col > h6,
+  .footer-col > ul > li > a {
+    padding-left: 10px;
+  }
+
+  .footer-mini-logo > img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .playstoreandappstore {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .socialmedia {
+    gap: 12px;
+  }
+
+  .text-footer-end > p {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+}

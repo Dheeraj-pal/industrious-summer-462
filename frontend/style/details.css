@@ -17,68 +17,53 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-#navigationBar {
-  position: fixed;
-  margin-top: -40px;
+
+body {
+  overflow-x: hidden;
+}
+
+.thumbnail {
+    transition: all 0.3s ease;
+    border: 2px solid transparent !important;
+}
+.thumbnail:hover {
+    transform: scale(1.05);
+    border-color: #000000 !important;
+}
+.thumbnail.active {
+    border-color: #feef02 !important;
+    box-shadow: 0 0 8px rgba(0,123,255,0.4);
+}
+
+/* Optional but useful to hide scrollbar */
+#thumbnail-images::-webkit-scrollbar {
+  display: none;
+}
+#thumbnail-images {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Carousel arrow buttons */
+.thumb-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 24px;
+  padding: 6px 10px;
+  cursor: pointer;
   z-index: 1;
-  width: 100vw;
-  height: 65px;
+  transition: background-color 0.2s;
 }
-#nav-logo-img {
-  margin-left: 20px;
-  width: 170px;
-  height: 35px;
-}
-#nav-signin-id {
-  height: 40px;
-  display: flexbox;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-#nav-signin-id > a:hover {
-  color: #feef02;
-}
-.singin-nav {
-  color: white;
-  font-size: 22px;
-  text-decoration: none;
-}
-.signintxt {
-  color: white;
-  font-size: 12px;
+.thumb-nav-btn:hover {
+  background-color: rgba(200, 200, 200, 0.8);
 }
 
-.navbar-search {
-  margin: auto;
-  width: 200%;
-  height: 40px;
-}
-.nav-opt:hover {
-  text-decoration: underline;
-}
-.navbar-search {
-  width: 400px;
-}
-
-#navbar-submenu {
-  width: 200px;
-  margin-top: 11px;
-  margin-left: -5px;
-  background-color: #000000;
-  border-radius: 0;
-}
-#navbar-submenu > li > a {
-  color: white;
-}
-#navbar-submenu > li > a:hover {
-  background-color: #000000;
-  text-decoration: underline;
-  zoom: 110%;
-}
 
 footer {
   margin-top: 50px;
@@ -429,7 +414,6 @@ footer {
 #ask-ques:hover {
   cursor: pointer;
   border: 1px solid #feef02;
-
 }
 #customer-review div {
   display: flex;
@@ -522,20 +506,4 @@ footer {
   #cartlogo {
     display: none;
   }
-}
-
-#cartlogo {
-  margin: auto;
-  margin-right: 40px;
-  text-align: center;
-}
-#cartlogo > svg {
-  height: 28px;
-  /* width: 40px; */
-  font-weight: 800;
-}
-#cartlogo > p {
-  margin-top: 2px;
-  color: white;
-  font-size: 12px;
 }
