@@ -457,5 +457,11 @@ async function removeCoupon() {
  * Proceed to checkout
  */
 function proceedToCheckout() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // Redirect to login page with return URL
+    window.location.href = 'login.html?redirect=checkout.html';
+    return;
+  }
   window.location.href = 'checkout.html';
 }

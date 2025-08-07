@@ -1,5 +1,5 @@
-import { Controller, Post, Body, Req, UseGuards, Headers } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Post, Get, Body, Req, Query, UseGuards, Headers } from '@nestjs/common';
+import { ApiTags, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { PaymentsService } from './payments.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
@@ -21,4 +21,12 @@ export class PaymentsController {
     // Stripe will POST events here
     return this.paymentsService.handleWebhook(event);
   }
-} 
+  
+  @Get('verify')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiQuery({ name: 'session_id', required: true })
+  async verifyPayment(@Query('session_id') sessionId: string) {
+    return this.paymentsService.verifyPayment(sessionId);
+  }
+}
