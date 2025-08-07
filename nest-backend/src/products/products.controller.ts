@@ -92,7 +92,6 @@ export class ProductsController {
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
   ) {
-    console.log(quick)
     if (quick == 'true') {
       return this.productsService.quickSearch(query, page, limit);
     }

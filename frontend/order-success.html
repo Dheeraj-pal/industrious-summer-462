@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./style/navbar.css" />
+  <link rel="stylesheet" href="./style/footer.css" />
+  <link rel="icon" type="image/x-icon" href="images/logo_mini.png" />
+
+  <title>Order Confirmation</title>
+  
+  <style>
+    .order-success-container {
+      text-align: center;
+      padding: 50px 20px;
+    }
+    
+    .success-icon {
+      font-size: 80px;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    
+    .order-details {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+      text-align: left;
+    }
+    
+    .order-details h4 {
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .order-item {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .order-item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    
+    .order-item-details {
+      flex-grow: 1;
+    }
+    
+    .order-item-name {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    
+    .order-item-price {
+      color: #6c757d;
+      font-size: 14px;
+    }
+    
+    .order-item-quantity {
+      color: #6c757d;
+      font-size: 14px;
+    }
+    
+    .order-summary {
+      margin-top: 20px;
+    }
+    
+    .action-buttons {
+      margin-top: 30px;
+    }
+    
+    .action-buttons .btn {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar Container -->
+  <div id="navbar-container"></div>
+
+  <!-- Main Section -->
+  <div class="container my-5">
+    <div class="order-success-container">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Thank You for Your Order!</h2>
+      <p class="lead">Your order has been placed successfully.</p>
+      <p id="order-id">Order ID: <span id="order-id-value">Loading...</span></p>
+      <p>A confirmation email has been sent to your registered email address.</p>
+      
+      <div class="order-details" id="order-details">
+        <h4>Order Details</h4>
+        <div id="order-items">
+          <!-- Order items will be loaded here -->
+          <p class="text-center">Loading order details...</p>
+        </div>
+        
+        <div class="order-summary" id="order-summary">
+          <!-- Order summary will be loaded here -->
+        </div>
+      </div>
+      
+      <div class="action-buttons">
+        <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+        <a href="#" id="track-order-btn" class="btn btn-outline-secondary">Track Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Container -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap and other scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/e5a9c90922.js" crossorigin="anonymous"></script>
+  <script src="./scripts/components.js"></script>
+  <script>
+    // Get order ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+    const sessionId = urlParams.get('session_id');
+    
+    // API Base URL
+    const API_BASE_URL = 'http://localhost:3030/api';
+    
+    // DOM Elements
+    const orderIdValue = document.getElementById('order-id-value');
+    const orderItemsContainer = document.getElementById('order-items');
+    const orderSummaryContainer = document.getElementById('order-summary');
+    const trackOrderBtn = document.getElementById('track-order-btn');
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (orderId) {
+        // Display order ID
+        orderIdValue.textContent = orderId;
+        
+        // Load order details
+        await loadOrderDetails(orderId);
+      } else if (sessionId) {
+        // Verify payment with Stripe session ID
+        await verifyPayment(sessionId);
+      } else {
+        // No order ID or session ID provided
+        orderIdValue.textContent = 'Not available';
+        orderItemsContainer.innerHTML = '<p class="text-center">Order details not available.</p>';
+      }
+    });
+    
+    // Load order details
+    async function loadOrderDetails(orderId) {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        const response = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to load order details');
+        }
+        
+        const order = await response.json();
+        
+        // Render order items
+        renderOrderItems(order.items);
+        
+        // Render order summary
+        renderOrderSummary(order);
+        
+        // Update track order button
+        trackOrderBtn.href = `order-tracking.html?orderId=${orderId}`;
+      } catch (error) {
+        console.error('Error loading order details:', error);
+        orderItemsContainer.innerHTML = '<p class="text-center text-danger">Failed to load order details. Please try again later.</p>';
+      }
+    }
+    
+    // Verify payment with Stripe session ID
+    async function verifyPayment(sessionId) {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        const response = await fetch(`${API_BASE_URL}/payments/verify?session_id=${sessionId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to verify payment');
+        }
+        
+        const result = await response.json();
+        
+        // Display order ID
+        orderIdValue.textContent = result.orderId;
+        
+        // Load order details
+        await loadOrderDetails(result.orderId);
+        
+        // Update URL without reloading the page
+        window.history.replaceState({}, document.title, `order-success.html?orderId=${result.orderId}`);
+      } catch (error) {
+        console.error('Error verifying payment:', error);
+        orderIdValue.textContent = 'Not available';
+        orderItemsContainer.innerHTML = '<p class="text-center text-danger">Failed to verify payment. Please contact customer support.</p>';
+      }
+    }
+    
+    // Render order items
+    function renderOrderItems(items) {
+      if (!items || items.length === 0) {
+        orderItemsContainer.innerHTML = '<p class="text-center">No items in this order.</p>';
+        return;
+      }
+      
+      orderItemsContainer.innerHTML = items.map(item => {
+        return `
+          <div class="order-item">
+            <img src="${item.product.images[0] || 'images/no-product-found.png'}" alt="${item.product.name}" class="order-item-image">
+            <div class="order-item-details">
+              <div class="order-item-name">${item.product.name}</div>
+              <div class="d-flex justify-content-between">
+                <div class="order-item-price">₹${parseFloat(item.price).toFixed(2)}</div>
+                <div class="order-item-quantity">Qty: ${item.quantity}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // Render order summary
+    function renderOrderSummary(order) {
+      orderSummaryContainer.innerHTML = `
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal</span>
+          <span>₹${parseFloat(order.subtotal).toFixed(2)}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Tax</span>
+          <span>₹${parseFloat(order.totalTax).toFixed(2)}</span>
+        </div>
+        ${order.couponDiscount > 0 ? `
+        <div class="d-flex justify-content-between mb-2 text-success">
+          <span>Coupon Discount</span>
+          <span>-₹${parseFloat(order.couponDiscount).toFixed(2)}</span>
+        </div>` : ''}
+        <div class="d-flex justify-content-between mb-2">
+          <span>Delivery</span>
+          <span>₹${parseFloat(order.deliveryCharge).toFixed(2)}</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total</span>
+          <span>₹${parseFloat(order.totalAmount).toFixed(2)}</span>
+        </div>
+        <div class="mt-3">
+          <p class="mb-1"><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+          <p class="mb-1"><strong>Payment Status:</strong> <span class="badge ${order.paymentStatus === 'PAID' ? 'bg-success' : 'bg-warning'}"> ${order.paymentStatus}</span></p>
+          <p class="mb-0"><strong>Order Status:</strong> <span class="badge bg-info">${order.status}</span></p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+
+</html>

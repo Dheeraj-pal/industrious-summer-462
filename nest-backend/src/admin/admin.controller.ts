@@ -1,5 +1,26 @@
-import { Controller, Get, Post, Delete, Body, Param, Query, UseGuards, UseInterceptors, UploadedFiles, Patch, UploadedFile } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery, ApiConsumes, ApiBody } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+  UseInterceptors,
+  UploadedFiles,
+  Patch,
+  UploadedFile,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+  ApiQuery,
+  ApiConsumes,
+  ApiBody,
+} from '@nestjs/swagger';
 import { AdminService } from './admin.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -9,7 +30,10 @@ import { CreateCategoryDto } from '../categories/dto/create-category.dto';
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { CloudinaryService, CloudinaryUploadResult } from '../cloudinary/cloudinary.service';
+import {
+  CloudinaryService,
+  CloudinaryUploadResult,
+} from '../cloudinary/cloudinary.service';
 import { ProductsService } from 'src/products/products.service';
 import { UpdateProductDto } from 'src/products/dto/update-product.dto';
 import { UpdateCategoryDto } from 'src/categories/dto/update-category.dto';
@@ -25,7 +49,7 @@ export class AdminController {
     private readonly adminService: AdminService,
     private readonly productsService: ProductsService,
     private readonly cloudinaryService: CloudinaryService,
-  ) { }
+  ) {}
 
   @Get('dashboard')
   @ApiOperation({ summary: 'Get dashboard statistics' })
@@ -71,35 +95,28 @@ export class AdminController {
         'products',
       );
     }
-    console.log('createProductDto > admin controller > 74 ===> ', JSON.stringify(createProductDto))
-    
+
     // Explicitly convert boolean fields to ensure correct values
     const processedDto = {
       ...createProductDto,
       images,
     };
-    
-    console.log('processedDto > admin controller ===> ', JSON.stringify(processedDto));
-    
+
     return this.adminService.createProduct(processedDto);
   }
 
-  @Patch('products/:id')
-  @ApiOperation({ summary: 'Update product' })
-  @ApiResponse({ status: 200, description: 'Product updated successfully.' })
+  @Patch('products/:id/images')
+  @ApiOperation({ summary: 'Update product images' })
+  @ApiResponse({
+    status: 200,
+    description: 'Product images updated successfully.',
+  })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     schema: {
       type: 'object',
       properties: {
-        name: { type: 'string', description: 'Product name' },
-        description: { type: 'string', description: 'Product description' },
-        price: { type: 'string', description: 'Product price' },
-        stock: { type: 'number', description: 'Product stock quantity' },
-        brand: { type: 'string', description: 'Product brand' },
-        categoryId: { type: 'string', description: 'Category ID' },
-        isActive: { type: 'boolean', description: 'Product active status' },
         images: {
           type: 'array',
           items: {
@@ -112,9 +129,9 @@ export class AdminController {
     },
   })
   @UseInterceptors(FilesInterceptor('images', 5))
-  async updateProduct(
+  async updateProductImages(
     @Param('id') id: string,
-    @Body() updateProductDto: UpdateProductDto,
+    // @Body() updateProductDto: UpdateProductDto,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
     let images: CloudinaryUploadResult[] = [];
@@ -126,12 +143,55 @@ export class AdminController {
     }
     // Explicitly convert boolean fields to ensure correct values
     const processedDto = {
-      ...updateProductDto,
       images,
-   };
-    
-    console.log('processedDto > admin controller update ===> ', JSON.stringify(processedDto));
-    
+    };
+
+    return this.adminService.updateProduct(id, processedDto);
+  }
+
+  @Patch('products/:id')
+  @ApiOperation({ summary: 'Update product' })
+  @ApiResponse({ status: 200, description: 'Product updated successfully.' })
+  @ApiResponse({ status: 404, description: 'Product not found.' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        name: { type: 'string', description: 'Product name' },
+        description: { type: 'string', description: 'Product description' },
+        price: { type: 'number', description: 'Product price' },
+        stock: { type: 'number', description: 'Product stock quantity' },
+        brand: { type: 'string', description: 'Product brand' },
+        categoryId: { type: 'string', description: 'Category ID' },
+        isActive: { type: 'boolean', description: 'Product active status' },
+        mrp: {
+          type: 'number',
+          description: 'Product MRP (maximum retail price)',
+        },
+        gstRate: {
+          type: 'number',
+          description: 'Product GST (tax rate)',
+        },
+        gender: { type: 'string', description: 'Product gender' },
+        isDealOfTheWeek: {
+          type: 'boolean',
+          description: 'Is deal of the week?',
+        },
+        isSponsored: { type: 'boolean', description: 'Is sponsored product?' },
+        isFeaturedProduct: { type: 'boolean', description: 'Is featured product?' },
+        isPopularOnSite: { type: 'boolean', description: 'Is popular on site?' },
+      },
+    },
+  })
+  async updateProduct(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
+    // Explicitly convert boolean fields to ensure correct values
+    const processedDto = {
+      ...updateProductDto,
+    };
+
     return this.adminService.updateProduct(id, processedDto);
   }
 
@@ -215,7 +275,10 @@ export class AdminController {
     if (file) {
       image = await this.cloudinaryService.uploadImage(file, 'categories');
     }
-    return this.adminService.updateCategory(id, { ...updateCategoryDto, image });
+    return this.adminService.updateCategory(id, {
+      ...updateCategoryDto,
+      image,
+    });
   }
 
   @Delete('categories/:id')
@@ -250,7 +313,10 @@ export class AdminController {
 
   @Patch('orders/:id/status')
   @ApiOperation({ summary: 'Update order status' })
-  @ApiResponse({ status: 200, description: 'Order status updated successfully.' })
+  @ApiResponse({
+    status: 200,
+    description: 'Order status updated successfully.',
+  })
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @ApiBody({ type: UpdateOrderStatusDto })
   async updateOrderStatus(

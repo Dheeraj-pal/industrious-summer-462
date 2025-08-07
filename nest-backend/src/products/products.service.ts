@@ -327,7 +327,6 @@ export class ProductsService {
       totalPages: number;
     };
   }> {
-    console.log(page, limit);
     const query = await this.productsRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.category', 'category')
@@ -382,7 +381,6 @@ export class ProductsService {
       totalPages: number;
     };
   }> {
-    console.log(page, limit);
     const query = await this.productsRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.category', 'category')
