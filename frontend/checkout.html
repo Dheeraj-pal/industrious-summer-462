@@ -37,9 +37,9 @@
     <div class="row">
       <!-- Left Side: Checkout Form -->
       <div class="col-lg-8 col-md-7">
-        <div class="checkout-section">
+        <div id="shipping-section" class="checkout-section">
           <!-- Shipping Information -->
-          <div id="shipping-section" class="mb-4">
+          <div class="mb-4">
             <h4 class="section-title">Shipping Information</h4>
             <div id="address-selection">
               <div class="saved-addresses mb-3" id="saved-addresses-container">
@@ -48,7 +48,7 @@
               <button id="add-new-address-btn" class="btn btn-outline-secondary mb-3">Add New Address</button>
             </div>
 
-            <form id="shipping-form" class="needs-validation" novalidate>
+            <form id="shipping-form" class="needs-validation" style="display: none;" novalidate>
               <div class="row g-3">
                 <div class="col-12">
                   <label for="name" class="form-label">Full Name</label>
@@ -190,6 +190,73 @@
         </div>
       </div>
 
+      <!-- Payment Section (Initially Hidden) -->
+      <div class="col-lg-8 col-md-7" id="payment-section" style="display: none;">
+        <div>
+          <div class="checkout-section" id="payment-method-section">
+            <h4 class="section-title">Payment Method</h4>
+            <div class="payment-options">
+              <div class="form-check payment-option">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card" checked>
+                <label class="form-check-label" for="cardPayment">
+                  <div class="d-flex align-items-center">
+                    <div class="payment-icon card-icon me-2"></div>
+                    <span>Credit/Debit Card</span>
+                  </div>
+                </label>
+              </div>
+              <div class="form-check payment-option">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="upiPayment" value="upi">
+                <label class="form-check-label" for="upiPayment">
+                  <div class="d-flex align-items-center">
+                    <div class="payment-icon upi-icon me-2"></div>
+                    <span>UPI</span>
+                  </div>
+                </label>
+              </div>
+              <div class="form-check payment-option">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="codPayment" value="cod">
+                <label class="form-check-label" for="codPayment">
+                  <div class="d-flex align-items-center">
+                    <div class="payment-icon cod-icon me-2"></div>
+                    <span>Cash on Delivery</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Card Payment Form (Initially Shown) -->
+            <div id="card-payment-form" class="mt-3">
+              <div id="card-element" class="mb-3">
+                <!-- Stripe Card Element will be inserted here -->
+              </div>
+              <div id="card-errors" class="text-danger mb-3"></div>
+            </div>
+
+            <!-- UPI Payment Form (Initially Hidden) -->
+            <div id="upi-payment-form" class="mt-3" style="display: none;">
+              <div class="mb-3">
+                <label for="upiId" class="form-label">UPI ID</label>
+                <input type="text" class="form-control" id="upiId" placeholder="username@upi">
+              </div>
+            </div>
+
+            <!-- COD Payment Form (Initially Hidden) -->
+            <div id="cod-payment-form" class="mt-3" style="display: none;">
+              <div class="alert alert-info">
+                <p class="mb-0">You will pay at the time of delivery. Additional charges may apply.</p>
+              </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+              <button id="back-to-shipping-btn" class="btn btn-outline-secondary me-md-2">Back to Shipping</button>
+              <button id="place-order-btn" class="btn btn-primary">Place Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Right Side: Order Summary -->
       <div class="col-lg-4 col-md-5">
         <div class="order-summary">
@@ -200,73 +267,6 @@
           <hr>
           <div id="order-totals">
             <!-- Order totals will be loaded here -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Payment Section (Initially Hidden) -->
-    <div class="row mt-4" id="payment-section" style="display: none;">
-      <div class="col-lg-8 col-md-7">
-        <div class="checkout-section">
-          <h4 class="section-title">Payment Method</h4>
-          <div class="payment-options">
-            <div class="form-check payment-option">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card" checked>
-              <label class="form-check-label" for="cardPayment">
-                <div class="d-flex align-items-center">
-                  <div class="payment-icon card-icon me-2"></div>
-                  <span>Credit/Debit Card</span>
-                </div>
-              </label>
-            </div>
-            <div class="form-check payment-option">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="upiPayment" value="upi">
-              <label class="form-check-label" for="upiPayment">
-                <div class="d-flex align-items-center">
-                  <div class="payment-icon upi-icon me-2"></div>
-                  <span>UPI</span>
-                </div>
-              </label>
-            </div>
-            <div class="form-check payment-option">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="codPayment" value="cod">
-              <label class="form-check-label" for="codPayment">
-                <div class="d-flex align-items-center">
-                  <div class="payment-icon cod-icon me-2"></div>
-                  <span>Cash on Delivery</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- Card Payment Form (Initially Shown) -->
-          <div id="card-payment-form" class="mt-3">
-            <div id="card-element" class="mb-3">
-              <!-- Stripe Card Element will be inserted here -->
-            </div>
-            <div id="card-errors" class="text-danger mb-3"></div>
-          </div>
-
-          <!-- UPI Payment Form (Initially Hidden) -->
-          <div id="upi-payment-form" class="mt-3" style="display: none;">
-            <div class="mb-3">
-              <label for="upiId" class="form-label">UPI ID</label>
-              <input type="text" class="form-control" id="upiId" placeholder="username@upi">
-            </div>
-          </div>
-
-          <!-- COD Payment Form (Initially Hidden) -->
-          <div id="cod-payment-form" class="mt-3" style="display: none;">
-            <div class="alert alert-info">
-              <p class="mb-0">You will pay at the time of delivery. Additional charges may apply.</p>
-            </div>
-          </div>
-
-          <!-- Place Order Button -->
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-            <button id="back-to-shipping-btn" class="btn btn-outline-secondary me-md-2">Back to Shipping</button>
-            <button id="place-order-btn" class="btn btn-primary">Place Order</button>
           </div>
         </div>
       </div>

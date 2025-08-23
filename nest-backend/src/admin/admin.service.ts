@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ProductsService } from '../products/products.service';
 import { CategoriesService } from '../categories/categories.service';
 import { OrdersService } from '../orders/orders.service';
@@ -24,8 +24,20 @@ export class AdminService {
   ) {}
 
   // Dashboard Statistics
-  async getDashboardStats() {
-    const [
+  async getDashboardStats(page = 1, limit = 10): Promise<{
+    totalProducts: number;
+    totalCategories: number;
+    totalOrders: number;
+    totalUsers: number;
+    recentOrders: any[];
+    pagination: {
+      total: number;
+      page: number;
+      pageSize: number;
+      totalPages: number;
+    };
+  }> {
+   const [
       totalProducts,
       totalCategories,
       totalOrders,
@@ -36,7 +48,7 @@ export class AdminService {
       this.categoriesService.count(),
       this.ordersService.count(),
       this.usersService.count(),
-      this.ordersService.findRecent(5),
+      this.ordersService.findAll(page, limit ).then(result => result.items),
     ]);
 
     return {
@@ -45,6 +57,13 @@ export class AdminService {
       totalOrders,
       totalUsers,
       recentOrders,
+      pagination: {
+        total: totalOrders,
+        page,
+        pageSize: limit,
+        totalPages: Math.ceil(totalOrders / limit),
+      },
+
     };
   }
 
@@ -137,8 +156,8 @@ export class AdminService {
   }
 
   // Category Management
-  async getAllCategories() {
-    return this.categoriesService.findAll();
+  async getAllCategories(page = 1, limit = 10) {
+    return this.categoriesService.findAll(page, limit);
   }
 
   async createCategory(createCategoryDto: any) {
@@ -154,8 +173,8 @@ export class AdminService {
   }
 
   // Order Management
-  async getAllOrders(userId: string, page = 1, limit = 10) {
-    return this.ordersService.findAll(userId, page, limit);
+  async getAllOrders(page = 1, limit = 10) {
+    return this.ordersService.findAll(page, limit);
   }
 
   async getOrderById(id: string) {

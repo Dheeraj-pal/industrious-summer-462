@@ -11,6 +11,7 @@ import {
   UploadedFiles,
   Patch,
   UploadedFile,
+  Request,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -54,8 +55,11 @@ export class AdminController {
   @Get('dashboard')
   @ApiOperation({ summary: 'Get dashboard statistics' })
   @ApiResponse({ status: 200, description: 'Returns dashboard statistics.' })
-  async getDashboardStats() {
-    return this.adminService.getDashboardStats();
+  async getDashboardStats(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10
+  ) {
+    return this.adminService.getDashboardStats(page, limit);
   }
 
   // Product Management
@@ -178,8 +182,14 @@ export class AdminController {
           description: 'Is deal of the week?',
         },
         isSponsored: { type: 'boolean', description: 'Is sponsored product?' },
-        isFeaturedProduct: { type: 'boolean', description: 'Is featured product?' },
-        isPopularOnSite: { type: 'boolean', description: 'Is popular on site?' },
+        isFeaturedProduct: {
+          type: 'boolean',
+          description: 'Is featured product?',
+        },
+        isPopularOnSite: {
+          type: 'boolean',
+          description: 'Is popular on site?',
+        },
       },
     },
   })
@@ -207,8 +217,13 @@ export class AdminController {
   @Get('categories')
   @ApiOperation({ summary: 'Get all categories' })
   @ApiResponse({ status: 200, description: 'Returns all categories.' })
-  async getAllCategories() {
-    return this.adminService.getAllCategories();
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  async getAllCategories(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.adminService.getAllCategories(page, limit);
   }
 
   @Post('categories')
@@ -275,6 +290,8 @@ export class AdminController {
     if (file) {
       image = await this.cloudinaryService.uploadImage(file, 'categories');
     }
+    console.log('updateCategoryDto', updateCategoryDto)
+
     return this.adminService.updateCategory(id, {
       ...updateCategoryDto,
       image,
@@ -296,11 +313,10 @@ export class AdminController {
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   async getAllOrders(
-    @UserId() userId: string,
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
   ) {
-    return this.adminService.getAllOrders(userId, page, limit);
+    return this.adminService.getAllOrders(page, limit);
   }
 
   @Get('orders/:id')

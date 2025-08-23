@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
@@ -30,18 +34,47 @@ export class CategoriesService {
     return this.categoryRepository.save(category);
   }
 
-  async findAll(): Promise<Category[]> {
-    return this.categoryRepository.find({
-      where: { isActive: true },
-      select: {
-        id:true,
-        name: true,
-        description: true,
-        image: true,
-        isActive: true,
-        gstRate: true,
-      }
-    });
+  async findAll(
+    page = 1,
+    limit = 10,
+  ): Promise<{
+    items: any[];
+    pagination: {
+      total: number;
+      page: number;
+      pageSize: number;
+      totalPages: number;
+    };
+  }> {
+    const query = this.categoryRepository.createQueryBuilder('category');
+
+    // Pagination
+    query.skip((page - 1) * limit).take(limit);
+
+    // Fetch data and count
+    const [items, total] = await query.getManyAndCount();
+
+    return {
+      items,
+      pagination: {
+        total: total,
+        page: page,
+        pageSize: limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+
+    // return this.categoryRepository.find({
+    //   where: { isActive: true },
+    //   select: {
+    //     id:true,
+    //     name: true,
+    //     description: true,
+    //     image: true,
+    //     isActive: true,
+    //     gstRate: true,
+    //   }
+    // });
   }
 
   async findOne(id: string): Promise<Category> {
@@ -60,7 +93,10 @@ export class CategoriesService {
     return category;
   }
 
-  async update(id: string, updateCategoryDto: UpdateCategoryDto): Promise<Category> {
+  async update(
+    id: string,
+    updateCategoryDto: UpdateCategoryDto,
+  ): Promise<Category> {
     // Validate UUID format first
     UUIDUtil.validateUUID(id, 'Category ID');
 
@@ -104,4 +140,4 @@ export class CategoriesService {
   async count(): Promise<number> {
     return this.categoryRepository.count();
   }
-} 
+}

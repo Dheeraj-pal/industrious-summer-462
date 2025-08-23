@@ -35,6 +35,9 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
+  @Column({ nullable: true })
+  stripeCustomerId: string;
+
   @OneToMany(() => Order, order => order.user)
   orders: Order[];
 

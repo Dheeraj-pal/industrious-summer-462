@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
 import { ProductsModule } from '../products/products.module';
@@ -14,7 +14,7 @@ import { HomeSection } from '../home-section/entities/home-section.entity';
   imports: [
     ProductsModule,
     CategoriesModule,
-    OrdersModule,
+    forwardRef(() => OrdersModule),
     UsersModule,
     CloudinaryModule,
     HomeSectionModule,
