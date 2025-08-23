@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
 import { Coupon } from './entities/coupon.entity';
@@ -29,13 +33,19 @@ export class CouponsService {
     }
     const coupon = couponRaw as Coupon;
     if (data.applicableProducts) {
-      coupon.applicableProducts = (await this.productRepository.findBy({ id: In(data.applicableProducts) })) as Product[];
+      coupon.applicableProducts = (await this.productRepository.findBy({
+        id: In(data.applicableProducts),
+      })) as Product[];
     }
     if (data.applicableCategories) {
-      coupon.applicableCategories = (await this.categoryRepository.findBy({ id: In(data.applicableCategories) })) as Category[];
+      coupon.applicableCategories = (await this.categoryRepository.findBy({
+        id: In(data.applicableCategories),
+      })) as Category[];
     }
     if (data.createdBy) {
-      const user = await this.userRepository.findOne({ where: { id: data.createdBy } });
+      const user = await this.userRepository.findOne({
+        where: { id: data.createdBy },
+      });
       if (user) {
         coupon.createdBy = user;
       }
@@ -44,14 +54,21 @@ export class CouponsService {
   }
 
   async update(id: string, data: any) {
-    const coupon = await this.couponRepository.findOne({ where: { id }, relations: ['applicableProducts', 'applicableCategories'] });
+    const coupon = await this.couponRepository.findOne({
+      where: { id },
+      relations: ['applicableProducts', 'applicableCategories'],
+    });
     if (!coupon) throw new NotFoundException('Coupon not found');
     Object.assign(coupon, data);
     if (data.applicableProducts) {
-      coupon.applicableProducts = await this.productRepository.findBy({ id: In(data.applicableProducts) });
+      coupon.applicableProducts = await this.productRepository.findBy({
+        id: In(data.applicableProducts),
+      });
     }
     if (data.applicableCategories) {
-      coupon.applicableCategories = await this.categoryRepository.findBy({ id: In(data.applicableCategories) });
+      coupon.applicableCategories = await this.categoryRepository.findBy({
+        id: In(data.applicableCategories),
+      });
     }
     return this.couponRepository.save(coupon);
   }
@@ -63,27 +80,65 @@ export class CouponsService {
     return { message: 'Coupon deleted' };
   }
 
-  async findAll() {
-    return this.couponRepository.find({ relations: ['applicableProducts', 'applicableCategories', 'createdBy'] });
+  async findAll(
+    page: number,
+    limit: number,
+  ): Promise<{
+    items: any[];
+    pagination: {
+      total: number;
+      page: number;
+      pageSize: number;
+      totalPages: number;
+    };
+  }> {
+    const [items, total] = await this.couponRepository.findAndCount({
+      relations: ['applicableProducts', 'applicableCategories', 'createdBy'],
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      items,
+      pagination: {
+        total: total,
+        page: page,
+        pageSize: limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 
   async findOne(id: string) {
-    const coupon = await this.couponRepository.findOne({ where: { id }, relations: ['applicableProducts', 'applicableCategories', 'createdBy'] });
+    const coupon = await this.couponRepository.findOne({
+      where: { id },
+      relations: ['applicableProducts', 'applicableCategories', 'createdBy'],
+    });
     if (!coupon) throw new NotFoundException('Coupon not found');
     return coupon;
   }
 
   async assignProducts(id: string, productIds: string[]) {
-    const coupon = await this.couponRepository.findOne({ where: { id }, relations: ['applicableProducts'] });
+    const coupon = await this.couponRepository.findOne({
+      where: { id },
+      relations: ['applicableProducts'],
+    });
     if (!coupon) throw new NotFoundException('Coupon not found');
-    coupon.applicableProducts = await this.productRepository.findBy({ id: In(productIds) });
+    coupon.applicableProducts = await this.productRepository.findBy({
+      id: In(productIds),
+    });
     return this.couponRepository.save(coupon);
   }
 
   async assignCategories(id: string, categoryIds: string[]) {
-    const coupon = await this.couponRepository.findOne({ where: { id }, relations: ['applicableCategories'] });
+    const coupon = await this.couponRepository.findOne({
+      where: { id },
+      relations: ['applicableCategories'],
+    });
     if (!coupon) throw new NotFoundException('Coupon not found');
-    coupon.applicableCategories = await this.categoryRepository.findBy({ id: In(categoryIds) });
+    coupon.applicableCategories = await this.categoryRepository.findBy({
+      id: In(categoryIds),
+    });
     return this.couponRepository.save(coupon);
   }
-} 
+}

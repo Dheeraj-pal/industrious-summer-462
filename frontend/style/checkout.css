@@ -23,8 +23,8 @@
 }
 
 .progress-step.active {
-  color: white;
-  background-color: #0b5ed7;
+  color: black;
+  background-color: #feef02;
 }
 
 .progress-connector {

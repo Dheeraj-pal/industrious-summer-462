@@ -9,6 +9,9 @@ A robust and scalable e-commerce backend API built with NestJS and PostgreSQL.
 - Product management with categories
 - Shopping cart functionality
 - Order management
+- Secure payment processing with Stripe integration
+- Email notifications for order confirmations
+- Webhook handling for payment events
 - Swagger API documentation
 - PostgreSQL database with TypeORM
 - Input validation and error handling
@@ -49,6 +52,20 @@ DB_DATABASE=ecommerce_db
 # JWT
 JWT_SECRET=your-super-secret-key-change-in-production
 JWT_EXPIRATION=1d
+
+# Stripe
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+
+# Email (optional - configure based on your email provider)
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@example.com
+EMAIL_PASSWORD=your_email_password
+EMAIL_FROM=noreply@example.com
+```
+
+See [STRIPE_WEBHOOK_SETUP.md](./STRIPE_WEBHOOK_SETUP.md) for detailed instructions on setting up Stripe webhooks.
 
 # Swagger
 SWAGGER_TITLE=Dollar General

@@ -33,6 +33,7 @@ let deliveryOption = 'standard';
 let paymentMethod = 'card';
 let stripe = null;
 let cardElement = null;
+let couponCode = null;
 let states = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chattisgarh', 'Goa', 'Gujarat', 
   'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 
@@ -224,7 +225,10 @@ function renderAddresses(addresses) {
       document.querySelectorAll('.saved-address').forEach(el => el.classList.remove('selected'));
       this.classList.add('selected');
       selectedAddressId = this.dataset.addressId;
-      
+
+      // storing it in local storage
+      localStorage.setItem('selectedAddressId', selectedAddressId);
+
       // Check the radio button
       const radio = this.querySelector('input[type="radio"]');
       radio.checked = true;
@@ -387,10 +391,12 @@ function updateOrderSummary() {
   }).join('');
   
   // Update standard delivery price
-  standardDeliveryPriceElement.textContent = `₹${parseFloat(cart.deliveryCharge).toFixed(2)}`;
+  standardDeliveryPriceElement.textContent = `₹${parseFloat(cart.items[0].cartBreakdown.deliveryCharge).toFixed(2)}`;
 
     const { subtotal, totalTax, totalSavings, totalMRP, couponDiscount, deliveryCharge, totalAmount } = cart.items[0].cartBreakdown;
-  
+    
+  couponCode = cart.items[0].couponCode || '';
+
   // Render order totals
   orderTotalsContainer.innerHTML = `
       <div class="card-body">
@@ -737,11 +743,20 @@ async function placeOrder() {
     }
     
     // Create order data
+    // modify the json body to follow this structure {"items":[{"productId":"string","quantity":0}],"shippingAddressId":"string","couponCode":"string","paymentMethod":"card","deliveryOption":"standard","notes":"string"}
     const orderData = {
-      addressId: selectedAddressId,
+      items: cart.items[0].items.map(item => ({
+        productId: item.id,
+        quantity: item.quantity
+      })),
+      shippingAddressId: selectedAddressId,
+      couponCode,
       paymentMethod: paymentMethod,
-      deliveryOption: deliveryOption
+      deliveryOption: deliveryOption,
+      notes: ""
     };
+
+    console.log('orderData', JSON.stringify(orderData))
     
     // Create order
     const orderResponse = await fetch(`${API_BASE_URL}/orders`, {
@@ -759,17 +774,54 @@ async function placeOrder() {
     }
     
     const orderResult = await orderResponse.json();
-    
+    console.log('orderResult', JSON.stringify(orderResult))
     // Handle payment based on selected method
     if (paymentMethod === 'card') {
       // Create payment session with Stripe
+      // Format the request according to the API requirements
+      const lineItems = orderResult.data.items.map(item => {
+        // Create the product data object without description first
+        const productData = {
+          name: item.productName,
+          images: [item.productImage]
+        };
+        
+        // Only add description if it exists and is not empty
+        if (item.productDescription) {
+          productData.description = item.productDescription;
+        }
+        
+        return {
+          price_data: {
+            currency: 'inr',
+            product_data: productData,
+            unit_amount: Math.round(item.price * 100) // Convert to cents/paise
+          },
+          quantity: item.quantity
+        };
+      });
+
+      // Get user email from localStorage or use a default format based on userId
+      const userEmail = localStorage.getItem('userEmail') || `${orderResult.data.userId.substring(0, 8)}@example.com`;
+      
+      const paymentData = {
+        lineItems,
+        successUrl: `${window.location.origin}/order-success.html?session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl: `${window.location.origin}/checkout.html`,
+        customerEmail: userEmail,
+        metadata: {
+          orderId: orderResult.data.id,
+          userId: orderResult.data.userId
+        }
+      };
+
       const paymentResponse = await fetch(`${API_BASE_URL}/payments/create-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ order: orderResult })
+        body: JSON.stringify(paymentData)
       });
       
       if (!paymentResponse.ok) {
@@ -779,19 +831,20 @@ async function placeOrder() {
       
       const { url, sessionId } = await paymentResponse.json();
       
-      // Store the sessionId in localStorage for verification later
+      // Store the sessionId and orderId in localStorage for verification later
       localStorage.setItem('stripe_session_id', sessionId);
+      localStorage.setItem('pending_order_id', orderResult.data.id);
       
       // Redirect to Stripe Checkout
       window.location.href = url;
     } else if (paymentMethod === 'upi') {
       // Handle UPI payment
       // For now, just redirect to success page
-      window.location.href = `order-success.html?orderId=${orderResult.id}`;
+      window.location.href = `order-success.html?orderId=${orderResult.data.id}`;
     } else if (paymentMethod === 'cod') {
       // Handle COD payment
       // For now, just redirect to success page
-      window.location.href = `order-success.html?orderId=${orderResult.id}`;
+      window.location.href = `order-success.html?orderId=${orderResult.data.id}`;
     }
   } catch (error) {
     console.error('Error placing order:', error);

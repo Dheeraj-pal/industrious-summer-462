@@ -69,7 +69,8 @@ export class HomeSectionController {
         order: { type: 'number', description: 'Display order of the section' },
         metadata: {
           type: 'string',
-          description: 'Additional metadata as JSON string. For GENDER_SHOP type, include: {"genderOptions":[{"imageIndex":0,"label":"Shop for Him"}]}',
+          description:
+            'Additional metadata as JSON string. For GENDER_SHOP type, include: {"genderOptions":[{"imageIndex":0,"label":"Shop for Him"}]}',
         },
         productIds: {
           type: 'string',
@@ -85,7 +86,8 @@ export class HomeSectionController {
             type: 'string',
             format: 'binary',
           },
-          description: 'Images for the section (max 5 files). For GENDER_SHOP, these images will be referenced by imageIndex in genderOptions.',
+          description:
+            'Images for the section (max 5 files). For GENDER_SHOP, these images will be referenced by imageIndex in genderOptions.',
         },
         imageProductMappings: {
           type: 'string',
@@ -146,18 +148,25 @@ export class HomeSectionController {
         url: img.secure_url,
         public_id: img.public_id,
       }));
-      
+
       // Process genderOptions if this is a gender_shop section
-      if (createHomeSectionDto.type === HomeSectionType.GENDER_SHOP && metadata.genderOptions) {
+      if (
+        createHomeSectionDto.type === HomeSectionType.GENDER_SHOP &&
+        metadata.genderOptions
+      ) {
         if (Array.isArray(metadata.genderOptions)) {
           // Replace imageIndex references with actual image URLs
-          metadata.genderOptions = metadata.genderOptions.map(option => {
-            if (typeof option.imageIndex === 'number' && option.imageIndex >= 0 && option.imageIndex < uploadedImages.length) {
+          metadata.genderOptions = metadata.genderOptions.map((option) => {
+            if (
+              typeof option.imageIndex === 'number' &&
+              option.imageIndex >= 0 &&
+              option.imageIndex < uploadedImages.length
+            ) {
               // Replace imageIndex with actual image URL
               return {
                 ...option,
                 image: uploadedImages[option.imageIndex].secure_url,
-                imageIndex: undefined // Remove the imageIndex property
+                imageIndex: undefined, // Remove the imageIndex property
               };
             }
             return option;
@@ -200,8 +209,13 @@ export class HomeSectionController {
     description: 'Returns all home sections.',
     type: [HomeSection],
   })
-  findAll() {
-    return this.homeSectionService.findAll();
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.homeSectionService.findAll(page, limit);
   }
 
   @Get('home-screen')
@@ -260,7 +274,8 @@ export class HomeSectionController {
         order: { type: 'number', description: 'Display order of the section' },
         metadata: {
           type: 'string',
-          description: 'Additional metadata as JSON string. For GENDER_SHOP type, include: {"genderOptions":[{"imageIndex":0,"label":"Shop for Him"}]}',
+          description:
+            'Additional metadata as JSON string. For GENDER_SHOP type, include: {"genderOptions":[{"imageIndex":0,"label":"Shop for Him"}]}',
         },
         productIds: {
           type: 'string',
@@ -276,7 +291,8 @@ export class HomeSectionController {
             type: 'string',
             format: 'binary',
           },
-          description: 'Images for the section (max 5 files). For GENDER_SHOP, these images will be referenced by imageIndex in genderOptions.',
+          description:
+            'Images for the section (max 5 files). For GENDER_SHOP, these images will be referenced by imageIndex in genderOptions.',
         },
         imageProductMappings: {
           type: 'string',
@@ -349,31 +365,40 @@ export class HomeSectionController {
           public_id: img.public_id,
         })),
       ];
-      
+
       // Process genderOptions if this is a gender_shop section
-      if (updateHomeSectionDto.type === HomeSectionType.GENDER_SHOP || 
-          (existingSection.type === HomeSectionType.GENDER_SHOP && !updateHomeSectionDto.type)) {
+      if (
+        updateHomeSectionDto.type === HomeSectionType.GENDER_SHOP ||
+        (existingSection.type === HomeSectionType.GENDER_SHOP &&
+          !updateHomeSectionDto.type)
+      ) {
         if (metadata.genderOptions && Array.isArray(metadata.genderOptions)) {
           // Get the starting index for new images
           const startIndex = existingImages.length;
-          
+
           // Replace imageIndex references with actual image URLs
-          metadata.genderOptions = metadata.genderOptions.map(option => {
+          metadata.genderOptions = metadata.genderOptions.map((option) => {
             if (typeof option.imageIndex === 'number') {
               // If imageIndex refers to a new image
-              if (option.imageIndex >= 0 && option.imageIndex < uploadedImages.length) {
+              if (
+                option.imageIndex >= 0 &&
+                option.imageIndex < uploadedImages.length
+              ) {
                 // Replace imageIndex with actual image URL from newly uploaded images
                 return {
                   ...option,
                   image: uploadedImages[option.imageIndex].secure_url,
-                  imageIndex: undefined // Remove the imageIndex property
+                  imageIndex: undefined, // Remove the imageIndex property
                 };
-              } else if (option.imageIndex >= 0 && option.imageIndex < existingImages.length) {
+              } else if (
+                option.imageIndex >= 0 &&
+                option.imageIndex < existingImages.length
+              ) {
                 // Reference to an existing image
                 return {
                   ...option,
                   image: existingImages[option.imageIndex].url,
-                  imageIndex: undefined // Remove the imageIndex property
+                  imageIndex: undefined, // Remove the imageIndex property
                 };
               }
             }

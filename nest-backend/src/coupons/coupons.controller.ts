@@ -1,17 +1,36 @@
-import { Controller, Post, Patch, Delete, Get, Param, Body, UseGuards, Query, Request } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse, ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
+import {
+  Controller,
+  Post,
+  Patch,
+  Delete,
+  Get,
+  Param,
+  Body,
+  UseGuards,
+  Query,
+  Request,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiBody,
+  ApiParam,
+  ApiQuery,
+} from '@nestjs/swagger';
 import { CouponsService } from './coupons.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-import { CreateCouponDto } from './dto/create-coupon.dto'
+import { CreateCouponDto } from './dto/create-coupon.dto';
 import { User } from 'src/users/entities/user.entity';
 
 @ApiTags('coupons')
 @Controller('coupons')
 @ApiBearerAuth()
 export class CouponsController {
-  constructor(private readonly couponsService: CouponsService) { }
+  constructor(private readonly couponsService: CouponsService) {}
 
   @Post()
   @Roles('admin')
@@ -52,21 +71,40 @@ export class CouponsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiOperation({ summary: 'Get all coupons (admin)' })
   @ApiResponse({ status: 200, description: 'List of all coupons' })
-  async findAll() {
-    const coupons = await this.couponsService.findAll();
+  @ApiQuery({ name: 'page', required: true, type: Number })
+  @ApiQuery({ name: 'limit', required: true, type: Number })
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    const coupons = await this.couponsService.findAll(page, limit);
     return coupons;
   }
 
   @Get('available')
   @ApiOperation({ summary: 'Get all available coupons for customers' })
   @ApiQuery({ name: 'userId', required: false, type: String })
-  @ApiResponse({ status: 200, description: 'List of available coupons for the customer' })
-  async getAvailableCoupons(@Request() req) {
+  @ApiResponse({
+    status: 200,
+    description: 'List of available coupons for the customer',
+  })
+  @ApiQuery({ name: 'page', required: true, type: Number })
+  @ApiQuery({ name: 'limit', required: true, type: Number })
+  async getAvailableCoupons(
+    @Request() req,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
     // You can enhance this logic to filter by user, order, etc.
-    const coupons = await this.couponsService.findAll();
+    const { items } = await this.couponsService.findAll(page, limit);
     const now = new Date();
-    const available = coupons.filter(c => c.isActive && (!c.startDate || now >= new Date(c.startDate)) && (!c.endDate || now <= new Date(c.endDate)));
-    return available ;
+    const available = items.filter(
+      (c) =>
+        c.isActive &&
+        (!c.startDate || now >= new Date(c.startDate)) &&
+        (!c.endDate || now <= new Date(c.endDate)),
+    );
+    return available;
   }
 
   @Get(':id')
@@ -85,9 +123,17 @@ export class CouponsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiOperation({ summary: 'Assign products to coupon' })
   @ApiParam({ name: 'id', type: String })
-  @ApiBody({ schema: { type: 'object', properties: { productIds: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { productIds: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   @ApiResponse({ status: 200, description: 'Products assigned to coupon' })
-  async assignProducts(@Param('id') id: string, @Body('productIds') productIds: string[]) {
+  async assignProducts(
+    @Param('id') id: string,
+    @Body('productIds') productIds: string[],
+  ) {
     const result = await this.couponsService.assignProducts(id, productIds);
     return { message: 'Products assigned to coupon', data: result };
   }
@@ -97,10 +143,18 @@ export class CouponsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiOperation({ summary: 'Assign categories to coupon' })
   @ApiParam({ name: 'id', type: String })
-  @ApiBody({ schema: { type: 'object', properties: { categoryIds: { type: 'array', items: { type: 'string' } } } } })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { categoryIds: { type: 'array', items: { type: 'string' } } },
+    },
+  })
   @ApiResponse({ status: 200, description: 'Categories assigned to coupon' })
-  async assignCategories(@Param('id') id: string, @Body('categoryIds') categoryIds: string[]) {
+  async assignCategories(
+    @Param('id') id: string,
+    @Body('categoryIds') categoryIds: string[],
+  ) {
     const result = await this.couponsService.assignCategories(id, categoryIds);
     return { message: 'Categories assigned to coupon', data: result };
   }
-} 
+}

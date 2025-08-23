@@ -11,6 +11,8 @@ import { DeliveryChargeRuleService } from './delivery-charge-rule.service';
 import { DeliveryChargeRuleController } from './delivery-charge-rule.controller';
 import { CartModule } from '../cart/cart.module';
 import { Cart } from 'src/cart/entities/cart.entity';
+import { PaymentsModule } from '../payments/payments.module';
+import { AddressModule } from '../addresses/address.module';
 
 @Module({
   imports: [
@@ -23,9 +25,11 @@ import { Cart } from 'src/cart/entities/cart.entity';
     ProductsModule,
     UsersModule,
     forwardRef(() => CartModule),
+    PaymentsModule,
+    AddressModule,
   ],
   controllers: [OrdersController, DeliveryChargeRuleController],
   providers: [OrdersService, DeliveryChargeRuleService],
   exports: [OrdersService, DeliveryChargeRuleService],
 })
-export class OrdersModule {} 
+export class OrdersModule {}

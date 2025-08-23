@@ -13,6 +13,8 @@ import { CartModule } from './cart/cart.module';
 import { SearchModule } from './search/search.module';
 import { CouponsModule } from './coupons/coupons.module';
 import { HomeSectionModule } from './home-section/home-section.module';
+import { PaymentsModule } from './payments/payments.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -47,6 +49,8 @@ import { HomeSectionModule } from './home-section/home-section.module';
     SearchModule,
     CouponsModule,
     HomeSectionModule,
+    PaymentsModule,
+    EmailModule,
   ],
 })
 export class AppModule {}

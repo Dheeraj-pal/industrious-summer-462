@@ -1,22 +1,56 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, Logger, RequestMethod } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
 import { ResponseInterceptor } from './common/response.interceptor';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
-  // const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalInterceptors(new LoggingInterceptor()); 
+  const logger = new Logger('Bootstrap');
+  
+  // Create the app with rawBody option
+  const app = await NestFactory.create(AppModule, {
+    bodyParser: false, // Disable the built-in body parser
+  });
+  
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   // Enable CORS
   app.enableCors();
 
-  // Security middleware
-  app.use(helmet());
+  // Configure body parser to expose the raw body
+  app.use(bodyParser.json({
+    verify: (req: any, res, buf) => {
+      // Make raw body available for Stripe webhook verification
+      if (req.originalUrl && req.originalUrl.includes('/payments/webhook')) {
+        req.rawBody = buf;
+      }
+    },
+  }));
+  
+  // For other routes, use regular body parser
+  app.use((req, res, next) => {
+    if (req.originalUrl && req.originalUrl.includes('/payments/webhook')) {
+      next();
+    } else {
+      bodyParser.urlencoded({ extended: true })(req, res, next);
+    }
+  });
+
+  // Security middleware with modified CSP for Stripe webhook
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        // Add more relaxed CSP for Stripe
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://js.stripe.com"],
+        frameSrc: ["'self'", "https://js.stripe.com", "https://hooks.stripe.com"],
+        connectSrc: ["'self'", "https://api.stripe.com"],
+      },
+    },
+  }));
 
   // Global validation pipe
   app.useGlobalPipes(
